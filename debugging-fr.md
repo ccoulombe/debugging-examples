@@ -1,5 +1,3 @@
-
-
 # Guide d'exemples de débogage avec Python
 
 Vous trouverez une vue d'ensemble détaillée des exemples de débogage contenus dans ce dépôt. Il détaille le fonctionnement de chaque exemple, les problématiques illustrées, les commandes nécessaires pour les exécuter et la manière d'interagir avec les outils de débogage.
@@ -25,7 +23,7 @@ Vous trouverez une vue d'ensemble détaillée des exemples de débogage contenus
    - [faulthandler-segfault.ipynb — Capture des plantages du noyau vers un fichier journal](#12-faulthandler-segfaultipynb--capture-des-plantages-du-noyau-vers-un-fichier-journal)
 5. [Exemples concrets (supplémentaires)](#exemples-concrets-supplémentaires)
    - [hpc-slurm-sigterm.py — Boucle infinie](#13-hpc-slurm-sigtermpy--boucle-infinie)
-   - [hpc-mpi-deadlock.py — Interblocages MPI](#14-hpc-mpi-deadlockpy--interblocages)
+   - [hpc-mpi-deadlock.py — Interblocages MPI](#14-hpc-mpi-deadlockpy--interblocages-mpi)
    - [hpc-io-watchdog.py — Bloquage I/O](#15-hpc-io-watchdogpy--bloquage-io)
    - [hpc-interactive-pdb.py — PDB interactif sur nœud de calcul](#16-hpc-interactive-pdbpy--pdb-interactif-sur-nœud-de-calcul)
 6. [Aide-mémoire](#aide-mémoire)
@@ -643,7 +641,7 @@ Cet exemple montre comment configurer `faulthandler.enable(open("faults.log", "w
 ### 13. `hpc-slurm-sigterm.py` — Boucle infinie
 
 #### Description
-Dans un environnement de calcul haute performance (HPC), une tâche qui dépasse son temps limite (`#SBATCH --time=...`) car elle tourne infiniement. . En interceptant `SIGTERM` avec `faulthandler`, vous pouvez forcer l'affichage de la pile d'appels dans le fichier de sortie (`slurm-%j.out`) pour savoir exactement où la boucle infinie se produit.
+Dans un environnement de calcul haute performance (HPC), une tâche qui dépasse son temps limite (`#SBATCH --time=...`), parce qu'elle tourne indéfiniment ou qu'elle atteint simplement le temps alloué, sera arrêtée. Lorsque la tâche est interrompue par Slurm, un délai de 60 secondes est accordé avec l'envoi d'un signal `SIGTERM` avant que celle-ci ne reçoive un `SIGKILL` définitif. En interceptant `SIGTERM` avec `faulthandler`, vous pouvez forcer l'affichage de la pile d'appels dans le fichier de sortie (`slurm-%j.out`) pour savoir exactement où la boucle infinie se produit ou où en était l'exécution de votre code.
 
 ```python
 import faulthandler

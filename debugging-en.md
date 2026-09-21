@@ -641,7 +641,7 @@ This example shows how to configure `faulthandler.enable(open("faults.log", "w")
 ### 13. `hpc-slurm-sigterm.py` — Infinite loop
 
 #### Description
-In a High-Performance Computing (HPC) environment, a task that exceeds its time limit (`#SBATCH --time=...`) because it runs infinitely. By intercepting `SIGTERM` with `faulthandler`, you can force the call stack to be printed in the output file (`slurm-%j.out`) to know exactly where the infinite loop occurs.
+In a High-Performance Computing (HPC) environment, a job that exceeds its time limit (`#SBATCH --time=...`), either because it runs infinitely or simply reaches the end of its allocated time, will be terminated. When the job is stopped by Slurm, a 60-second grace period is granted during which `SIGTERM` is sent before receiving a final `SIGKILL`. By intercepting `SIGTERM` with `faulthandler`, you can force the call stack to be printed in the output file (`slurm-%j.out`) to identify exactly where the infinite loop occurs or where your code execution was interrupted.
 
 ```python
 import faulthandler
