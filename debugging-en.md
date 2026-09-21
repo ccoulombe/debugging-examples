@@ -13,7 +13,7 @@ You will find a detailed overview of the debugging examples contained in this re
    - [pdb-condition.py — Conditional Breakpoints](#4-pdb-conditionpy--conditional-breakpoints)
    - [pdb-data.py — Command-Line Initialization (-c) and Type Mismatch](#5-pdb-datapy--command-line-initialization--c-and-type-mismatch)
 3. [Faulthandler Examples (Low-Level Diagnostics)](#faulthandler-examples-low-level-diagnostics)
-   - [faulthandler-hang.py — Hang Detection and Timeout (timeout)](#6-faulthandler-hangpy--hang-detection-and-timeout-timeout)
+   - [faulthandler-hang.py — Hang Detection and Timeout](#6-faulthandler-hangpy--hang-detection-and-timeout)
    - [faulthandler-segfault.py — Segmentation Faults (SIGSEGV)](#7-faulthandler-segfaultpy--segmentation-faults-sigsegv)
    - [faulthandler-sigill.py — Command-Line Activation (-X faulthandler)](#8-faulthandler-sigillpy--command-line-activation--x-faulthandler)
    - [faulthandler-sigusr.py — On-Demand Signal Inspection and Process Attachment](#9-faulthandler-sigusrpy--on-demand-signal-inspection-and-process-attachment)
@@ -44,6 +44,8 @@ You will find a detailed overview of the debugging examples contained in this re
 ## PDB Examples (Interactive Python Debugger)
 
 ### 1. `pdb-breakpoint.py` — Breakpoints (`breakpoint`)
+
+File : [pdb-breakpoint.py](pdb-breakpoint.py)
 
 #### Description
 Introduced in Python 3.7 ([PEP 553](https://peps.python.org/pep-0553/)), the built-in `breakpoint()` function suspends program execution and drops directly into the configured debugger (by default `pdb`).
@@ -91,6 +93,8 @@ Upon startup, Python pauses at line 2 (`breakpoint()`):
 
 ### 2. `pdb-set_trace.py` — Classic Method `pdb.set_trace()`
 
+File : [pdb-set_trace.py](pdb-set_trace.py)
+
 #### Description
 Illustrates the traditional approach used in Python versions prior to 3.7: explicitly importing the `pdb` module and calling `pdb.set_trace()`. The example also highlights the debugger's ability to directly evaluate Python expressions on the fly.
 
@@ -135,6 +139,8 @@ python pdb-set_trace.py
 ---
 
 ### 3. `pdb-average.py` — Command-Line Debugging, Step-by-Step
+
+File : [pdb-average.py](pdb-average.py)
 
 #### Description
 Runs a script under PDB without modifying its source code using the `-m pdb` option.
@@ -230,6 +236,8 @@ nums = []
 
 ### 4. `pdb-condition.py` — Conditional Breakpoints
 
+File : [pdb-condition.py](pdb-condition.py)
+
 #### Description
 Setup of a conditional breakpoint that only interrupts the program when a specific condition is met.
 In this loop, the function iterates over integers and must raise a `ValueError` as soon as a number is negative:
@@ -284,6 +292,8 @@ items = [1, 2, 3, -1, 5]
 ---
 
 ### 5. `pdb-data.py` — Command-Line Initialization (`-c`) and Type Mismatch
+
+File : [pdb-data.py](pdb-data.py)
 
 #### Description
 Illustrates two key concepts:
@@ -353,7 +363,9 @@ The program finished and will be restarted
 
 ## Faulthandler Examples (Low-Level Diagnostics)
 
-### 6. `faulthandler-hang.py` — Hang Detection and Timeout (*timeout*)
+### 6. `faulthandler-hang.py` — Hang Detection and Timeout
+
+File : [faulthandler-hang.py](faulthandler-hang.py)
 
 #### Description
 Allows identifying deadlocks (*deadlocks*) or infinite loops (*spinlocks*) using `faulthandler.dump_traceback_later(timeout)`. If execution time exceeds the specified timeout (here 3 seconds), `faulthandler` displays the traceback of all Python threads on standard error (`sys.stderr`) without interrupting the process.
@@ -383,6 +395,8 @@ Thread 0x00007f9a39ea6f00 [python] (most recent call first):
 ---
 
 ### 7. `faulthandler-segfault.py` — Segmentation Faults (`SIGSEGV`)
+
+File : [faulthandler-segfault.py](faulthandler-segfault.py)
 
 #### Description
 Calling `ctypes.string_at(0)` forces a NULL pointer dereference (`0x0`), which immediately triggers a memory access violation (`SIGSEGV`).
@@ -421,6 +435,8 @@ Current thread's C stack trace (most recent call first):
 ---
 
 ### 8. `faulthandler-sigill.py` — Command-Line Activation (`-X faulthandler`)
+
+File : [faulthandler-sigill.py](faulthandler-sigill.py)
 
 #### Description
 Shows how to enable `faulthandler` at the Python interpreter level without modifying a single line of source code, either with the CLI option `-X faulthandler`, or with the environment variable `PYTHONFAULTHANDLER=1`. The script deliberately emits the illegal hardware instruction signal (`SIGILL`).
@@ -466,6 +482,8 @@ Current thread's C stack trace (most recent call first):
 ---
 
 ### 9. `faulthandler-sigusr.py` — On-Demand Signal Inspection and Process Attachment
+
+File : [faulthandler-sigusr.py](faulthandler-sigusr.py)
 
 #### Description
 Presents two advanced techniques for examining a running or stuck Python process:
@@ -523,6 +541,8 @@ Output:
 
 ### 10. `pdb-breakpoint.ipynb` — Interactive Debugging
 
+File : [pdb-breakpoint.ipynb](pdb-breakpoint.ipynb)
+
 #### Description
 Using a breakpoint directly inside a Jupyter notebook cell using `IPython.core.debugger.set_trace()`. When evaluating the cell, an interactive `ipdb` prompt appears directly in the cell's output area.
 
@@ -548,13 +568,15 @@ Using a breakpoint directly inside a Jupyter notebook cell using `IPython.core.d
    ```bash
    jupyter lab
    ```
-2. Open [`pdb-breakpoint.ipynb`](file:///workspace/pdb-breakpoint.ipynb).
+2. Open [`pdb-breakpoint.ipynb`](pdb-breakpoint.ipynb).
 3. Run Cell 1 to load the function.
 4. Run Cell 2: execution halts at `set_trace()` and the `ipdb>` prompt opens, ready to receive your commands (`n`, `p nums`, `q`).
 
 ---
 
 ### 11. `pdb-postmortem.ipynb` — Post-Mortem Debugging with `%pdb`
+
+File : [pdb-postmortem.ipynb](pdb-postmortem.ipynb)
 
 #### Description
 Using IPython's automatic post-mortem mode via `%pdb on` (or `%debug`). When an uncaught exception occurs (here `TypeError: can only concatenate str (not "int") to str`), IPython automatically drops into `ipdb` at the exact location of the faulty line.
@@ -585,7 +607,7 @@ Using IPython's automatic post-mortem mode via `%pdb on` (or `%debug`). When an 
   ```
 
 #### Execution
-1. Open [`pdb-postmortem.ipynb`](file:///workspace/pdb-postmortem.ipynb) in Jupyter.
+1. Open [`pdb-postmortem.ipynb`](pdb-postmortem.ipynb) in Jupyter.
 2. Run Cell 1.
 3. Run Cell 2: `%pdb on` activates the automatic debugger. As soon as `main()` raises the `TypeError` exception, the `ipdb>` session opens:
    ```text
@@ -605,9 +627,11 @@ Using IPython's automatic post-mortem mode via `%pdb on` (or `%debug`). When an 
 
 ### 12. `faulthandler-segfault.ipynb` — Capturing Kernel Crashes to a Log File
 
+File : [faulthandler-segfault.ipynb](faulthandler-segfault.ipynb)
+
 #### Description
 When a Jupyter notebook suffers a fatal C-level error (a segmentation fault for example), the kernel process dies suddenly, often causing the loss of standard error messages in the web interface.
-This example shows how to configure `faulthandler.enable(open("faults.log", "w"))` to redirect the crash trace to a persistent log file ([`faults.log`](file:///workspace/faults.log)).
+This example shows how to configure `faulthandler.enable(open("faults.log", "w"))` to redirect the crash trace to a persistent log file ([`faults.log`](faults.log)).
 
 #### Content:
 - **Cell 1**:
@@ -625,10 +649,10 @@ This example shows how to configure `faulthandler.enable(open("faults.log", "w")
   ```
 
 #### Execution
-1. Open [`faulthandler-segfault.ipynb`](file:///workspace/faulthandler-segfault.ipynb) in Jupyter.
+1. Open [`faulthandler-segfault.ipynb`](faulthandler-segfault.ipynb) in Jupyter.
 2. Run Cell 1 to redirect `faulthandler` output to `faults.log`.
 3. Run Cell 2: the Jupyter kernel crashes abruptly (*"Kernel died / restarting"*).
-4. Inspect the generated [`faults.log`](file:///workspace/faults.log) file with an editor or in a terminal:
+4. Inspect the generated [`faults.log`](faults.log) file with an editor or in a terminal:
    ```bash
    cat faults.log
    ```
@@ -639,6 +663,8 @@ This example shows how to configure `faulthandler.enable(open("faults.log", "w")
 ## Practical Examples (Additional)
 
 ### 13. `hpc-slurm-sigterm.py` — Infinite loop
+
+File : [hpc-slurm-sigterm.py](hpc-slurm-sigterm.py)
 
 #### Description
 In a High-Performance Computing (HPC) environment, a job that exceeds its time limit (`#SBATCH --time=...`), either because it runs infinitely or simply reaches the end of its allocated time, will be terminated. When the job is stopped by Slurm, a 60-second grace period is granted during which `SIGTERM` is sent before receiving a final `SIGKILL`. By intercepting `SIGTERM` with `faulthandler`, you can force the call stack to be printed in the output file (`slurm-%j.out`) to identify exactly where the infinite loop occurs or where your code execution was interrupted.
@@ -678,6 +704,8 @@ Current thread 0x0000150e66b84740 (most recent call first):
 ---
 
 ### 14. `hpc-mpi-deadlock.py` — MPI Deadlocks
+
+File : [hpc-mpi-deadlock.py](hpc-mpi-deadlock.py)
 
 #### Description
 When using `mpi4py` distributed across multiple compute nodes, a rank (process) can hang waiting indefinitely for a message. By binding a custom signal (like `SIGUSR1`) to `faulthandler` for all threads, it is possible to send a signal to all processes via `scancel` to display the state of each rank.
@@ -738,6 +766,8 @@ Current thread 0x0000150e66b84740 (most recent call first):
 
 ### 15. `hpc-io-watchdog.py` — I/O Block
 
+File : [hpc-io-watchdog.py](hpc-io-watchdog.py)
+
 #### Description
 HPC shared filesystems can experience severe latency spikes, blocking input/output operations (`np.load()`, `h5py` reads) in an uninterruptible sleep state. `faulthandler.dump_traceback_later()` allows you to display the call stack when the time has elapsed.
 
@@ -771,6 +801,8 @@ I/O successfully completed.
 ---
 
 ### 16. `hpc-interactive-pdb.py` — Interactive PDB on Compute Node
+
+File : [hpc-interactive-pdb.py](hpc-interactive-pdb.py)
 
 #### Description
 Inserting `breakpoint()` in a script submitted via `sbatch` causes an immediate crash (`BdbQuit` or `EOFError`) because the background task has no terminal (TTY) or standard input to interact with.
