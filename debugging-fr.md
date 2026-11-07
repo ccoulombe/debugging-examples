@@ -14,19 +14,19 @@ Vous trouverez une vue d'ensemble détaillée des exemples de débogage contenus
    - [pdb-data.py — Initialisation via ligne de commande (-c) et discordance de types](#5-pdb-datapy--initialisation-via-ligne-de-commande--c-et-discordance-de-types)
    - [pdb-postmortem.py — Débogage post-mortem en ligne de commande (-c continue)](#6-pdb-postmortempy--débogage-post-mortem-en-ligne-de-commande--c-continue)
 3. [Exemples Faulthandler (Diagnostics bas niveau)](#exemples-faulthandler-diagnostics-bas-niveau)
-   - [faulthandler-hang.py — Détection de blocages et dépassement de délai (timeout)](#7-faulthandler-hangpy--détection-de-blocages-et-dépassement-de-délai-timeout)
-   - [faulthandler-segfault.py — Erreurs de segmentation (SIGSEGV)](#8-faulthandler-segfaultpy--erreurs-de-segmentation-sigsegv)
-   - [faulthandler-sigill.py — Activation en ligne de commande (-X faulthandler)](#9-faulthandler-sigillpy--activation-en-ligne-de-commande--x-faulthandler)
+   - [faulthandler-segfault.py — Erreurs de segmentation (SIGSEGV)](#7-faulthandler-segfaultpy--erreurs-de-segmentation-sigsegv)
+   - [faulthandler-sigill.py — Activation en ligne de commande (-X faulthandler)](#8-faulthandler-sigillpy--activation-en-ligne-de-commande--x-faulthandler)
+   - [faulthandler-hang.py — Détection de blocages et dépassement de délai (timeout)](#9-faulthandler-hangpy--détection-de-blocages-et-dépassement-de-délai-timeout)
    - [faulthandler-sigusr.py — Inspection à la demande via signal et attachement de processus](#10-faulthandler-sigusrpy--inspection-à-la-demande-via-signal-et-attachement-de-processus)
 4. [Exemples Jupyter (Notebooks)](#exemples-jupyter-notebooks)
    - [pdb-breakpoint.ipynb — Débogage interactif](#11-pdb-breakpointipynb--débogage-interactif)
    - [pdb-postmortem.ipynb — Débogage post-mortem avec %pdb](#12-pdb-postmortemipynb--débogage-post-mortem-avec-pdb)
    - [faulthandler-segfault.ipynb — Capture des plantages du noyau vers un fichier journal](#13-faulthandler-segfaultipynb--capture-des-plantages-du-noyau-vers-un-fichier-journal)
 5. [Exemples concrets (supplémentaires)](#exemples-concrets-supplémentaires)
-   - [hpc-slurm-sigterm.py — Boucle infinie](#14-hpc-slurm-sigtermpy--boucle-infinie)
-   - [hpc-mpi-deadlock.py — Interblocages MPI](#15-hpc-mpi-deadlockpy--interblocages-mpi)
-   - [hpc-io-watchdog.py — Bloquage I/O](#16-hpc-io-watchdogpy--bloquage-io)
-   - [hpc-interactive-pdb.py — PDB interactif sur nœud de calcul](#17-hpc-interactive-pdbpy--pdb-interactif-sur-nœud-de-calcul)
+   - [hpc-interactive-pdb.py — PDB interactif sur nœud de calcul](#14-hpc-interactive-pdbpy--pdb-interactif-sur-nœud-de-calcul)
+   - [hpc-io-watchdog.py — Bloquage I/O](#15-hpc-io-watchdogpy--bloquage-io)
+   - [hpc-slurm-sigterm.py — Boucle infinie](#16-hpc-slurm-sigtermpy--boucle-infinie)
+   - [hpc-mpi-deadlock.py — Interblocages MPI](#17-hpc-mpi-deadlockpy--interblocages-mpi)
 6. [Aide-mémoire](#aide-mémoire)
 
 ---
@@ -440,38 +440,7 @@ Running 'cont' or 'step' will restart the program
 
 ## Exemples Faulthandler (Diagnostics bas niveau)
 
-### 7. `faulthandler-hang.py` — Détection de blocages et dépassement de délai (*timeout*)
-
-Fichier : [faulthandler-hang.py](faulthandler-hang.py)
-
-#### Description
-Permet d'identifier les interblocages (*deadlocks*) ou les boucles infinies (*spinlocks*) à l'aide de `faulthandler.dump_traceback_later(timeout)`. Si le temps d'exécution dépasse le délai imparti (ici 3 secondes), `faulthandler` affiche la trace de tous les threads Python sur la sortie d'erreur (`sys.stderr`) sans interrompre le processus.
-
-```python
-import time
-import faulthandler
-
-faulthandler.dump_traceback_later(3)
-
-time.sleep(10)
-```
-
-#### Exécution
-```bash
-python faulthandler-hang.py
-```
-
-#### Trace obtenue
-Après exactement 3 secondes, la trace suivante est émise pendant que le script continue son sommeil jusqu'à atteindre 10 secondes :
-```text
-Timeout (0:00:03)!
-Thread 0x00007f9a39ea6f00 [python] (most recent call first):
-  File "faulthandler-hang.py", line 6 in <module>
-```
-
----
-
-### 8. `faulthandler-segfault.py` — Erreurs de segmentation (`SIGSEGV`)
+### 7. `faulthandler-segfault.py` — Erreurs de segmentation (`SIGSEGV`)
 
 Fichier : [faulthandler-segfault.py](faulthandler-segfault.py)
 
@@ -511,7 +480,7 @@ Current thread's C stack trace (most recent call first):
 
 ---
 
-### 9. `faulthandler-sigill.py` — Activation en ligne de commande (`-X faulthandler`)
+### 8. `faulthandler-sigill.py` — Activation en ligne de commande (`-X faulthandler`)
 
 Fichier : [faulthandler-sigill.py](faulthandler-sigill.py)
 
@@ -554,6 +523,37 @@ Current thread 0x00007f2c55b28f00 [python] (most recent call first):
 Current thread's C stack trace (most recent call first):
   Binary file "/lib64/libpython3.14.so.1.0", at _Py_DumpStack+...
   ...
+```
+
+---
+
+### 9. `faulthandler-hang.py` — Détection de blocages et dépassement de délai (*timeout*)
+
+Fichier : [faulthandler-hang.py](faulthandler-hang.py)
+
+#### Description
+Permet d'identifier les interblocages (*deadlocks*) ou les boucles infinies (*spinlocks*) à l'aide de `faulthandler.dump_traceback_later(timeout)`. Si le temps d'exécution dépasse le délai imparti (ici 3 secondes), `faulthandler` affiche la trace de tous les threads Python sur la sortie d'erreur (`sys.stderr`) sans interrompre le processus.
+
+```python
+import time
+import faulthandler
+
+faulthandler.dump_traceback_later(3)
+
+time.sleep(10)
+```
+
+#### Exécution
+```bash
+python faulthandler-hang.py
+```
+
+#### Trace obtenue
+Après exactement 3 secondes, la trace suivante est émise pendant que le script continue son sommeil jusqu'à atteindre 10 secondes :
+```text
+Timeout (0:00:03)!
+Thread 0x00007f9a39ea6f00 [python] (most recent call first):
+  File "faulthandler-hang.py", line 6 in <module>
 ```
 
 ---
@@ -739,7 +739,87 @@ Cet exemple montre comment configurer `faulthandler.enable(open("faults.log", "w
 
 ## Exemples concrets (supplémentaires)
 
-### 14. `hpc-slurm-sigterm.py` — Boucle infinie
+### 14. `hpc-interactive-pdb.py` — PDB interactif sur nœud de calcul
+
+Fichier : [hpc-interactive-pdb.py](hpc-interactive-pdb.py)
+
+#### Description
+Insérer `breakpoint()` dans un script soumis via `sbatch` provoque un crash immédiat (`BdbQuit` ou `EOFError`) car la tâche en arrière-plan ne dispose d'aucun terminal (TTY) ou entrée standard pour interagir.
+Pour utiliser PDB interactivement, il est indispensable de demander une session interactive (`salloc` ou `srun --pty`) afin de déboguer le tout.
+
+```python
+def heavy_computation_with_bug(matrix_size):
+    print(f"Allocating a {matrix_size}x{matrix_size} matrix...")
+    breakpoint()
+    return matrix_size * 2
+
+if __name__ == "__main__":
+    result = heavy_computation_with_bug(10000)
+    print(f"Result: {result}")
+```
+
+#### Exécution
+Dans Slurm, on obtient d'abord un shell interactif :
+```text
+$ salloc -c 2 --mem=10G
+salloc: Pending job allocation 3447848
+salloc: job 3447848 queued and waiting for resources
+salloc: job 3447848 has been allocated resources
+salloc: Granted job allocation 3447848
+salloc: Waiting for resource configuration
+salloc: Nodes nc20142 are ready for job
+```
+Puis on lance le débogueur :
+```text
+$ python hpc-interactive-pdb.py
+Allocating a 10000x10000 matrix...
+> /workspace/hpc-interactive-pdb.py(4)heavy_computation_with_bug()
+-> return matrix_size * 2
+(Pdb) p matrix_size
+10000
+(Pdb) c
+Result: 20000
+```
+
+---
+
+### 15. `hpc-io-watchdog.py` — Bloquage I/O
+
+Fichier : [hpc-io-watchdog.py](hpc-io-watchdog.py)
+
+#### Description
+Les systèmes de fichiers partagés HPC peuvent subir d'intenses pics, bloquant les opérations d'entrée/sortie (`np.load()`, lectures `h5py`) dans un état de sommeil ininterruptible. `faulthandler.dump_traceback_later()` permet de d'afficher la pile lorsque le temps est écoulé.
+
+```python
+import faulthandler
+import time
+
+# Starting a watchdog timer (here 3 seconds for demonstration)
+faulthandler.dump_traceback_later(3)
+
+try:
+    print("Simulating reading file...")
+    time.sleep(10) # Simulates a prolonged hang
+finally:
+    # Immediate cancellation upon success within the time limit
+    faulthandler.cancel_dump_traceback_later()
+
+print("I/O successfully completed.")
+```
+
+#### Exécution
+```text
+$ python hpc-io-watchdog.py
+Simulating reading file...
+Timeout (0:00:03)!
+Thread 0x00007f9a39ea6f00 (most recent call first):
+  File "hpc-io-watchdog.py", line 9 in <module>
+I/O successfully completed.
+```
+
+---
+
+### 16. `hpc-slurm-sigterm.py` — Boucle infinie
 
 Fichier : [hpc-slurm-sigterm.py](hpc-slurm-sigterm.py)
 
@@ -780,7 +860,7 @@ Current thread 0x0000150e66b84740 (most recent call first):
 
 ---
 
-### 15. `hpc-mpi-deadlock.py` — Interblocages MPI
+### 17. `hpc-mpi-deadlock.py` — Interblocages MPI
 
 Fichier : [hpc-mpi-deadlock.py](hpc-mpi-deadlock.py)
 
@@ -837,87 +917,6 @@ Current thread 0x0000150e66b84741 (most recent call first):
   File "hpc-mpi-deadlock.py", line 19 in <module>
 Current thread 0x0000150e66b84740 (most recent call first):
   File "hpc-mpi-deadlock.py", line 14 in <module>
-```
-
-
----
-
-### 16. `hpc-io-watchdog.py` — Bloquage I/O
-
-Fichier : [hpc-io-watchdog.py](hpc-io-watchdog.py)
-
-#### Description
-Les systèmes de fichiers partagés HPC peuvent subir d'intenses pics, bloquant les opérations d'entrée/sortie (`np.load()`, lectures `h5py`) dans un état de sommeil ininterruptible. `faulthandler.dump_traceback_later()` permet de d'afficher la pile lorsque le temps est écoulé.
-
-```python
-import faulthandler
-import time
-
-# Starting a watchdog timer (here 3 seconds for demonstration)
-faulthandler.dump_traceback_later(3)
-
-try:
-    print("Simulating reading file...")
-    time.sleep(10) # Simulates a prolonged hang
-finally:
-    # Immediate cancellation upon success within the time limit
-    faulthandler.cancel_dump_traceback_later()
-
-print("I/O successfully completed.")
-```
-
-#### Exécution
-```text
-$ python hpc-io-watchdog.py
-Simulating reading file...
-Timeout (0:00:03)!
-Thread 0x00007f9a39ea6f00 (most recent call first):
-  File "hpc-io-watchdog.py", line 9 in <module>
-I/O successfully completed.
-```
-
----
-
-### 17. `hpc-interactive-pdb.py` — PDB interactif sur nœud de calcul
-
-Fichier : [hpc-interactive-pdb.py](hpc-interactive-pdb.py)
-
-#### Description
-Insérer `breakpoint()` dans un script soumis via `sbatch` provoque un crash immédiat (`BdbQuit` ou `EOFError`) car la tâche en arrière-plan ne dispose d'aucun terminal (TTY) ou entrée standard pour interagir.
-Pour utiliser PDB interactivement, il est indispensable de demander une session interactive (`salloc` ou `srun --pty`) afin de déboguer le tout.
-
-```python
-def heavy_computation_with_bug(matrix_size):
-    print(f"Allocating a {matrix_size}x{matrix_size} matrix...")
-    breakpoint()
-    return matrix_size * 2
-
-if __name__ == "__main__":
-    result = heavy_computation_with_bug(10000)
-    print(f"Result: {result}")
-```
-
-#### Exécution
-Dans Slurm, on obtient d'abord un shell interactif :
-```text
-$ salloc -c 2 --mem=10G
-salloc: Pending job allocation 3447848
-salloc: job 3447848 queued and waiting for resources
-salloc: job 3447848 has been allocated resources
-salloc: Granted job allocation 3447848
-salloc: Waiting for resource configuration
-salloc: Nodes nc20142 are ready for job
-```
-Puis on lance le débogueur :
-```text
-$ python hpc-interactive-pdb.py
-Allocating a 10000x10000 matrix...
-> /workspace/hpc-interactive-pdb.py(4)heavy_computation_with_bug()
--> return matrix_size * 2
-(Pdb) p matrix_size
-10000
-(Pdb) c
-Result: 20000
 ```
 
 ---
