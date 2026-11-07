@@ -12,20 +12,21 @@ You will find a detailed overview of the debugging examples contained in this re
    - [pdb-average.py — Command-Line Debugging, Step-by-Step](#3-pdb-averagepy--command-line-debugging-step-by-step)
    - [pdb-condition.py — Conditional Breakpoints](#4-pdb-conditionpy--conditional-breakpoints)
    - [pdb-data.py — Command-Line Initialization (-c) and Type Mismatch](#5-pdb-datapy--command-line-initialization--c-and-type-mismatch)
+   - [pdb-postmortem.py — Command-Line Post-Mortem Debugging (-c continue)](#6-pdb-postmortempy--command-line-post-mortem-debugging--c-continue)
 3. [Faulthandler Examples (Low-Level Diagnostics)](#faulthandler-examples-low-level-diagnostics)
-   - [faulthandler-hang.py — Hang Detection and Timeout](#6-faulthandler-hangpy--hang-detection-and-timeout)
-   - [faulthandler-segfault.py — Segmentation Faults (SIGSEGV)](#7-faulthandler-segfaultpy--segmentation-faults-sigsegv)
-   - [faulthandler-sigill.py — Command-Line Activation (-X faulthandler)](#8-faulthandler-sigillpy--command-line-activation--x-faulthandler)
-   - [faulthandler-sigusr.py — On-Demand Signal Inspection and Process Attachment](#9-faulthandler-sigusrpy--on-demand-signal-inspection-and-process-attachment)
+   - [faulthandler-hang.py — Hang Detection and Timeout](#7-faulthandler-hangpy--hang-detection-and-timeout)
+   - [faulthandler-segfault.py — Segmentation Faults (SIGSEGV)](#8-faulthandler-segfaultpy--segmentation-faults-sigsegv)
+   - [faulthandler-sigill.py — Command-Line Activation (-X faulthandler)](#9-faulthandler-sigillpy--command-line-activation--x-faulthandler)
+   - [faulthandler-sigusr.py — On-Demand Signal Inspection and Process Attachment](#10-faulthandler-sigusrpy--on-demand-signal-inspection-and-process-attachment)
 4. [Jupyter Examples (Notebooks)](#jupyter-examples-notebooks)
-   - [pdb-breakpoint.ipynb — Interactive Debugging](#10-pdb-breakpointipynb--interactive-debugging)
-   - [pdb-postmortem.ipynb — Post-Mortem Debugging with %pdb](#11-pdb-postmortemipynb--post-mortem-debugging-with-pdb)
-   - [faulthandler-segfault.ipynb — Capturing Kernel Crashes to a Log File](#12-faulthandler-segfaultipynb--capturing-kernel-crashes-to-a-log-file)
+   - [pdb-breakpoint.ipynb — Interactive Debugging](#11-pdb-breakpointipynb--interactive-debugging)
+   - [pdb-postmortem.ipynb — Post-Mortem Debugging with %pdb](#12-pdb-postmortemipynb--post-mortem-debugging-with-pdb)
+   - [faulthandler-segfault.ipynb — Capturing Kernel Crashes to a Log File](#13-faulthandler-segfaultipynb--capturing-kernel-crashes-to-a-log-file)
 5. [Practical Examples (Additional)](#practical-examples-additional)
-   - [hpc-slurm-sigterm.py — Infinite loop](#13-hpc-slurm-sigtermpy--infinite-loop)
-   - [hpc-mpi-deadlock.py — MPI Deadlocks](#14-hpc-mpi-deadlockpy--mpi-deadlocks)
-   - [hpc-io-watchdog.py — I/O Block](#15-hpc-io-watchdogpy--io-block)
-   - [hpc-interactive-pdb.py — Interactive PDB on Compute Node](#16-hpc-interactive-pdbpy--interactive-pdb-on-compute-node)
+   - [hpc-slurm-sigterm.py — Infinite loop](#14-hpc-slurm-sigtermpy--infinite-loop)
+   - [hpc-mpi-deadlock.py — MPI Deadlocks](#15-hpc-mpi-deadlockpy--mpi-deadlocks)
+   - [hpc-io-watchdog.py — I/O Block](#16-hpc-io-watchdogpy--io-block)
+   - [hpc-interactive-pdb.py — Interactive PDB on Compute Node](#17-hpc-interactive-pdbpy--interactive-pdb-on-compute-node)
 6. [Cheat Sheet](#cheat-sheet)
 
 ---
@@ -371,9 +372,75 @@ The program finished and will be restarted
 
 ---
 
+### 6. `pdb-postmortem.py` — Command-Line Post-Mortem Debugging (`-c continue`)
+
+File : [pdb-postmortem.py](pdb-postmortem.py)
+
+#### Description
+Runs a script at normal speed under PDB using `-c continue` (or `-c c`) without setting any breakpoints in advance. When an unhandled exception occurs inside a helper function (`ZeroDivisionError` in `invert(x)`), PDB automatically enters **post-mortem mode** at the exact point of failure, allowing you to inspect the call stack (`w`) and move up (`up`) to the caller frame (`process(nums)`) to see which loop iteration caused the crash.
+
+```python
+def invert(x):
+    return 1 / x
+
+def process(nums):
+    for i, n in enumerate(nums):
+        print(invert(n))
+
+process([2, 4, 0, 8])
+```
+
+#### Execution
+```bash
+python -m pdb -c continue pdb-postmortem.py
+```
+
+#### Walkthrough
+```text
+0.5
+0.25
+Traceback (most recent call last):
+  File "pdb-postmortem.py", line 8, in <module>
+    process([2, 4, 0, 8])
+  File "pdb-postmortem.py", line 6, in process
+    print(invert(n))
+  File "pdb-postmortem.py", line 2, in invert
+    return 1 / x
+ZeroDivisionError: division by zero
+Uncaught exception. Entering post mortem debugging
+Running 'cont' or 'step' will restart the program
+> pdb-postmortem.py(2)invert()
+-> return 1 / x
+
+(Pdb) p x
+0
+
+(Pdb) w
+  pdb-postmortem.py(8)<module>()
+-> process([2, 4, 0, 8])
+  pdb-postmortem.py(6)process()
+-> print(invert(n))
+> pdb-postmortem.py(2)invert()
+-> return 1 / x
+
+(Pdb) up
+> pdb-postmortem.py(6)process()
+-> print(invert(n))
+
+(Pdb) p i, n
+(2, 0)
+
+(Pdb) q
+```
+- `-c continue`: Immediately starts execution without stopping at line 1, dropping into PDB only if an unhandled exception is raised.
+- `w` (*where*): Displays the full call stack leading to the crash (`<module>()` -> `process()` -> `invert()`).
+- `up`: Moves one frame up the call stack from `invert(x)` into `process(nums)` to inspect the loop index `i` (`2`) and current value `n` (`0`).
+
+---
+
 ## Faulthandler Examples (Low-Level Diagnostics)
 
-### 6. `faulthandler-hang.py` — Hang Detection and Timeout
+### 7. `faulthandler-hang.py` — Hang Detection and Timeout
 
 File : [faulthandler-hang.py](faulthandler-hang.py)
 
@@ -404,7 +471,7 @@ Thread 0x00007f9a39ea6f00 [python] (most recent call first):
 
 ---
 
-### 7. `faulthandler-segfault.py` — Segmentation Faults (`SIGSEGV`)
+### 8. `faulthandler-segfault.py` — Segmentation Faults (`SIGSEGV`)
 
 File : [faulthandler-segfault.py](faulthandler-segfault.py)
 
@@ -444,7 +511,7 @@ Current thread's C stack trace (most recent call first):
 
 ---
 
-### 8. `faulthandler-sigill.py` — Command-Line Activation (`-X faulthandler`)
+### 9. `faulthandler-sigill.py` — Command-Line Activation (`-X faulthandler`)
 
 File : [faulthandler-sigill.py](faulthandler-sigill.py)
 
@@ -491,7 +558,7 @@ Current thread's C stack trace (most recent call first):
 
 ---
 
-### 9. `faulthandler-sigusr.py` — On-Demand Signal Inspection and Process Attachment
+### 10. `faulthandler-sigusr.py` — On-Demand Signal Inspection and Process Attachment
 
 File : [faulthandler-sigusr.py](faulthandler-sigusr.py)
 
@@ -549,7 +616,7 @@ Output:
 
 ## Jupyter Examples (Notebooks)
 
-### 10. `pdb-breakpoint.ipynb` — Interactive Debugging
+### 11. `pdb-breakpoint.ipynb` — Interactive Debugging
 
 File : [pdb-breakpoint.ipynb](pdb-breakpoint.ipynb)
 
@@ -584,7 +651,7 @@ Using a breakpoint directly inside a Jupyter notebook cell using `IPython.core.d
 
 ---
 
-### 11. `pdb-postmortem.ipynb` — Post-Mortem Debugging with `%pdb`
+### 12. `pdb-postmortem.ipynb` — Post-Mortem Debugging with `%pdb`
 
 File : [pdb-postmortem.ipynb](pdb-postmortem.ipynb)
 
@@ -635,7 +702,7 @@ Using IPython's automatic post-mortem mode via `%pdb on` (or `%debug`). When an 
 
 ---
 
-### 12. `faulthandler-segfault.ipynb` — Capturing Kernel Crashes to a Log File
+### 13. `faulthandler-segfault.ipynb` — Capturing Kernel Crashes to a Log File
 
 File : [faulthandler-segfault.ipynb](faulthandler-segfault.ipynb)
 
@@ -672,7 +739,7 @@ This example shows how to configure `faulthandler.enable(open("faults.log", "w")
 
 ## Practical Examples (Additional)
 
-### 13. `hpc-slurm-sigterm.py` — Infinite loop
+### 14. `hpc-slurm-sigterm.py` — Infinite loop
 
 File : [hpc-slurm-sigterm.py](hpc-slurm-sigterm.py)
 
@@ -713,7 +780,7 @@ Current thread 0x0000150e66b84740 (most recent call first):
 
 ---
 
-### 14. `hpc-mpi-deadlock.py` — MPI Deadlocks
+### 15. `hpc-mpi-deadlock.py` — MPI Deadlocks
 
 File : [hpc-mpi-deadlock.py](hpc-mpi-deadlock.py)
 
@@ -774,7 +841,7 @@ Current thread 0x0000150e66b84740 (most recent call first):
 
 ---
 
-### 15. `hpc-io-watchdog.py` — I/O Block
+### 16. `hpc-io-watchdog.py` — I/O Block
 
 File : [hpc-io-watchdog.py](hpc-io-watchdog.py)
 
@@ -810,7 +877,7 @@ I/O successfully completed.
 
 ---
 
-### 16. `hpc-interactive-pdb.py` — Interactive PDB on Compute Node
+### 17. `hpc-interactive-pdb.py` — Interactive PDB on Compute Node
 
 File : [hpc-interactive-pdb.py](hpc-interactive-pdb.py)
 

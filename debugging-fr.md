@@ -12,20 +12,21 @@ Vous trouverez une vue d'ensemble détaillée des exemples de débogage contenus
    - [pdb-average.py — Débogage en ligne de commande, pas-à-pas](#3-pdb-averagepy--débogage-en-ligne-de-commande-pas-à-pas)
    - [pdb-condition.py — Points d'arrêt conditionnels](#4-pdb-conditionpy--points-darrêt-conditionnels)
    - [pdb-data.py — Initialisation via ligne de commande (-c) et discordance de types](#5-pdb-datapy--initialisation-via-ligne-de-commande--c-et-discordance-de-types)
+   - [pdb-postmortem.py — Débogage post-mortem en ligne de commande (-c continue)](#6-pdb-postmortempy--débogage-post-mortem-en-ligne-de-commande--c-continue)
 3. [Exemples Faulthandler (Diagnostics bas niveau)](#exemples-faulthandler-diagnostics-bas-niveau)
-   - [faulthandler-hang.py — Détection de blocages et dépassement de délai (timeout)](#6-faulthandler-hangpy--détection-de-blocages-et-dépassement-de-délai-timeout)
-   - [faulthandler-segfault.py — Erreurs de segmentation (SIGSEGV)](#7-faulthandler-segfaultpy--erreurs-de-segmentation-sigsegv)
-   - [faulthandler-sigill.py — Activation en ligne de commande (-X faulthandler)](#8-faulthandler-sigillpy--activation-en-ligne-de-commande--x-faulthandler)
-   - [faulthandler-sigusr.py — Inspection à la demande via signal et attachement de processus](#9-faulthandler-sigusrpy--inspection-à-la-demande-via-signal-et-attachement-de-processus)
+   - [faulthandler-hang.py — Détection de blocages et dépassement de délai (timeout)](#7-faulthandler-hangpy--détection-de-blocages-et-dépassement-de-délai-timeout)
+   - [faulthandler-segfault.py — Erreurs de segmentation (SIGSEGV)](#8-faulthandler-segfaultpy--erreurs-de-segmentation-sigsegv)
+   - [faulthandler-sigill.py — Activation en ligne de commande (-X faulthandler)](#9-faulthandler-sigillpy--activation-en-ligne-de-commande--x-faulthandler)
+   - [faulthandler-sigusr.py — Inspection à la demande via signal et attachement de processus](#10-faulthandler-sigusrpy--inspection-à-la-demande-via-signal-et-attachement-de-processus)
 4. [Exemples Jupyter (Notebooks)](#exemples-jupyter-notebooks)
-   - [pdb-breakpoint.ipynb — Débogage interactif](#10-pdb-breakpointipynb--débogage-interactif)
-   - [pdb-postmortem.ipynb — Débogage post-mortem avec %pdb](#11-pdb-postmortemipynb--débogage-post-mortem-avec-pdb)
-   - [faulthandler-segfault.ipynb — Capture des plantages du noyau vers un fichier journal](#12-faulthandler-segfaultipynb--capture-des-plantages-du-noyau-vers-un-fichier-journal)
+   - [pdb-breakpoint.ipynb — Débogage interactif](#11-pdb-breakpointipynb--débogage-interactif)
+   - [pdb-postmortem.ipynb — Débogage post-mortem avec %pdb](#12-pdb-postmortemipynb--débogage-post-mortem-avec-pdb)
+   - [faulthandler-segfault.ipynb — Capture des plantages du noyau vers un fichier journal](#13-faulthandler-segfaultipynb--capture-des-plantages-du-noyau-vers-un-fichier-journal)
 5. [Exemples concrets (supplémentaires)](#exemples-concrets-supplémentaires)
-   - [hpc-slurm-sigterm.py — Boucle infinie](#13-hpc-slurm-sigtermpy--boucle-infinie)
-   - [hpc-mpi-deadlock.py — Interblocages MPI](#14-hpc-mpi-deadlockpy--interblocages-mpi)
-   - [hpc-io-watchdog.py — Bloquage I/O](#15-hpc-io-watchdogpy--bloquage-io)
-   - [hpc-interactive-pdb.py — PDB interactif sur nœud de calcul](#16-hpc-interactive-pdbpy--pdb-interactif-sur-nœud-de-calcul)
+   - [hpc-slurm-sigterm.py — Boucle infinie](#14-hpc-slurm-sigtermpy--boucle-infinie)
+   - [hpc-mpi-deadlock.py — Interblocages MPI](#15-hpc-mpi-deadlockpy--interblocages-mpi)
+   - [hpc-io-watchdog.py — Bloquage I/O](#16-hpc-io-watchdogpy--bloquage-io)
+   - [hpc-interactive-pdb.py — PDB interactif sur nœud de calcul](#17-hpc-interactive-pdbpy--pdb-interactif-sur-nœud-de-calcul)
 6. [Aide-mémoire](#aide-mémoire)
 
 ---
@@ -371,9 +372,75 @@ The program finished and will be restarted
 
 ---
 
+### 6. `pdb-postmortem.py` — Débogage post-mortem en ligne de commande (`-c continue`)
+
+Fichier : [pdb-postmortem.py](pdb-postmortem.py)
+
+#### Description
+Exécute un script à vitesse normale sous PDB grâce à `-c continue` (ou `-c c`) sans définir de point d'arrêt à l'avance. Lorsqu'une exception non interceptée survient dans une sous-fonction (`ZeroDivisionError` dans `invert(x)`), PDB bascule automatiquement en **mode post-mortem** à l'endroit exact de l'erreur, ce qui permet d'examiner la pile d'appels (`w`) et de remonter (`up`) à l'origine de l'appel (`process(nums)`) pour identifier l'itération fautive.
+
+```python
+def invert(x):
+    return 1 / x
+
+def process(nums):
+    for i, n in enumerate(nums):
+        print(invert(n))
+
+process([2, 4, 0, 8])
+```
+
+#### Exécution
+```bash
+python -m pdb -c continue pdb-postmortem.py
+```
+
+#### Déroulement
+```text
+0.5
+0.25
+Traceback (most recent call last):
+  File "pdb-postmortem.py", line 8, in <module>
+    process([2, 4, 0, 8])
+  File "pdb-postmortem.py", line 6, in process
+    print(invert(n))
+  File "pdb-postmortem.py", line 2, in invert
+    return 1 / x
+ZeroDivisionError: division by zero
+Uncaught exception. Entering post mortem debugging
+Running 'cont' or 'step' will restart the program
+> pdb-postmortem.py(2)invert()
+-> return 1 / x
+
+(Pdb) p x
+0
+
+(Pdb) w
+  pdb-postmortem.py(8)<module>()
+-> process([2, 4, 0, 8])
+  pdb-postmortem.py(6)process()
+-> print(invert(n))
+> pdb-postmortem.py(2)invert()
+-> return 1 / x
+
+(Pdb) up
+> pdb-postmortem.py(6)process()
+-> print(invert(n))
+
+(Pdb) p i, n
+(2, 0)
+
+(Pdb) q
+```
+- `-c continue` : Lance immédiatement l'exécution sans s'arrêter à la ligne 1, et n'ouvre PDB que si une exception non gérée est levée.
+- `w` (*where*) : Affiche la pile d'appels complète ayant mené à l'exception (`<module>()` -> `process()` -> `invert()`).
+- `up` : Remonte d'un niveau dans la pile d'appels, de `invert(x)` vers `process(nums)`, afin d'inspecter l'indice de boucle `i` (`2`) et la valeur courante `n` (`0`).
+
+---
+
 ## Exemples Faulthandler (Diagnostics bas niveau)
 
-### 6. `faulthandler-hang.py` — Détection de blocages et dépassement de délai (*timeout*)
+### 7. `faulthandler-hang.py` — Détection de blocages et dépassement de délai (*timeout*)
 
 Fichier : [faulthandler-hang.py](faulthandler-hang.py)
 
@@ -404,7 +471,7 @@ Thread 0x00007f9a39ea6f00 [python] (most recent call first):
 
 ---
 
-### 7. `faulthandler-segfault.py` — Erreurs de segmentation (`SIGSEGV`)
+### 8. `faulthandler-segfault.py` — Erreurs de segmentation (`SIGSEGV`)
 
 Fichier : [faulthandler-segfault.py](faulthandler-segfault.py)
 
@@ -444,7 +511,7 @@ Current thread's C stack trace (most recent call first):
 
 ---
 
-### 8. `faulthandler-sigill.py` — Activation en ligne de commande (`-X faulthandler`)
+### 9. `faulthandler-sigill.py` — Activation en ligne de commande (`-X faulthandler`)
 
 Fichier : [faulthandler-sigill.py](faulthandler-sigill.py)
 
@@ -491,7 +558,7 @@ Current thread's C stack trace (most recent call first):
 
 ---
 
-### 9. `faulthandler-sigusr.py` — Inspection à la demande via signal et attachement de processus
+### 10. `faulthandler-sigusr.py` — Inspection à la demande via signal et attachement de processus
 
 Fichier : [faulthandler-sigusr.py](faulthandler-sigusr.py)
 
@@ -549,7 +616,7 @@ Sortie :
 
 ## Exemples Jupyter (Notebooks)
 
-### 10. `pdb-breakpoint.ipynb` — Débogage interactif
+### 11. `pdb-breakpoint.ipynb` — Débogage interactif
 
 Fichier : [pdb-breakpoint.ipynb](pdb-breakpoint.ipynb)
 
@@ -584,7 +651,7 @@ Utilisation d'un point d'arrêt directement au cœur d'une cellule de *notebook*
 
 ---
 
-### 11. `pdb-postmortem.ipynb` — Débogage post-mortem avec `%pdb`
+### 12. `pdb-postmortem.ipynb` — Débogage post-mortem avec `%pdb`
 
 Fichier : [pdb-postmortem.ipynb](pdb-postmortem.ipynb)
 
@@ -635,7 +702,7 @@ Utilisation du mode post-mortem automatique d'IPython via `%pdb on` (ou `%debug`
 
 ---
 
-### 12. `faulthandler-segfault.ipynb` — Capture des plantages du noyau vers un fichier journal
+### 13. `faulthandler-segfault.ipynb` — Capture des plantages du noyau vers un fichier journal
 
 Fichier : [faulthandler-segfault.ipynb](faulthandler-segfault.ipynb)
 
@@ -672,7 +739,7 @@ Cet exemple montre comment configurer `faulthandler.enable(open("faults.log", "w
 
 ## Exemples concrets (supplémentaires)
 
-### 13. `hpc-slurm-sigterm.py` — Boucle infinie
+### 14. `hpc-slurm-sigterm.py` — Boucle infinie
 
 Fichier : [hpc-slurm-sigterm.py](hpc-slurm-sigterm.py)
 
@@ -713,7 +780,7 @@ Current thread 0x0000150e66b84740 (most recent call first):
 
 ---
 
-### 14. `hpc-mpi-deadlock.py` — Interblocages MPI
+### 15. `hpc-mpi-deadlock.py` — Interblocages MPI
 
 Fichier : [hpc-mpi-deadlock.py](hpc-mpi-deadlock.py)
 
@@ -775,7 +842,7 @@ Current thread 0x0000150e66b84740 (most recent call first):
 
 ---
 
-### 15. `hpc-io-watchdog.py` — Bloquage I/O
+### 16. `hpc-io-watchdog.py` — Bloquage I/O
 
 Fichier : [hpc-io-watchdog.py](hpc-io-watchdog.py)
 
@@ -811,7 +878,7 @@ I/O successfully completed.
 
 ---
 
-### 16. `hpc-interactive-pdb.py` — PDB interactif sur nœud de calcul
+### 17. `hpc-interactive-pdb.py` — PDB interactif sur nœud de calcul
 
 Fichier : [hpc-interactive-pdb.py](hpc-interactive-pdb.py)
 
