@@ -89,6 +89,16 @@ Upon startup, Python pauses at line 2 (`breakpoint()`):
 - `p x` (*print*): Displays the value of argument `x` (`3`).
 - `q` (*quit*): Quits the debugger and terminates the program.
 
+#### Controlling `breakpoint()` via `PYTHONBREAKPOINT`
+Unlike `pdb.set_trace()`, `breakpoint()` checks the `PYTHONBREAKPOINT` environment variable at runtime, allowing you to disable breakpoints or switch debuggers without modifying source code:
+```bash
+# Ignore all breakpoint() calls
+PYTHONBREAKPOINT=0 python pdb-breakpoint.py
+
+# Use an alternative debugger (e.g., ipdb or pudb)
+PYTHONBREAKPOINT=ipdb.set_trace python pdb-breakpoint.py
+```
+
 ---
 
 ### 2. `pdb-set_trace.py` — Classic Method `pdb.set_trace()`
@@ -864,6 +874,8 @@ Result: 20000
 | `where` | `w` | Display call stack (*stack trace*), most recent frame at bottom. |
 | `up` / `down` | `u` / `d` | Move up or down one level in stack frames. |
 | `quit` | `q` | Quit debugger and terminate execution. |
+
+> **Note (`PYTHONBREAKPOINT`)**: Set `PYTHONBREAKPOINT=0` in the environment to disable all `breakpoint()` calls without editing code, or `PYTHONBREAKPOINT=<module>.<callable>` (e.g., `ipdb.set_trace`) to use an alternative debugger.
 
 ### Faulthandler Commands and Options
 

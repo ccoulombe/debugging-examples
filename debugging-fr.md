@@ -89,6 +89,16 @@ Dès le lancement, Python marque une pause à la ligne 2 (`breakpoint()`) :
 - `p x` (*print*) : Affiche la valeur de l'argument `x` (`3`).
 - `q` (*quit*) : Quitte le débogueur et interrompt le programme.
 
+#### Contrôler `breakpoint()` via `PYTHONBREAKPOINT`
+Contrairement à `pdb.set_trace()`, `breakpoint()` respecte la variable d'environnement `PYTHONBREAKPOINT` à l'exécution, ce qui permet de désactiver les points d'arrêt ou de changer de débogueur sans modifier le code source :
+```bash
+# Ignorer tous les appels à breakpoint()
+PYTHONBREAKPOINT=0 python pdb-breakpoint.py
+
+# Utiliser un débogueur alternatif (ex. ipdb ou pudb)
+PYTHONBREAKPOINT=ipdb.set_trace python pdb-breakpoint.py
+```
+
 ---
 
 ### 2. `pdb-set_trace.py` — Méthode classique `pdb.set_trace()`
@@ -865,6 +875,8 @@ Result: 20000
 | `where` | `w` | Affiche la pile des appels (*stack trace*), le cadre le plus récent étant en bas. |
 | `up` / `down` | `u` / `d` | Monte ou descend d'un niveau dans la pile des cadres d'exécution. |
 | `quit` | `q` | Quitte le débogueur et met fin à l'exécution. |
+
+> **Note (`PYTHONBREAKPOINT`)** : Définir `PYTHONBREAKPOINT=0` dans l'environnement pour désactiver tous les appels à `breakpoint()` sans modifier le code, ou `PYTHONBREAKPOINT=<module>.<fonction>` (ex. `ipdb.set_trace`) pour utiliser un débogueur alternatif.
 
 ### Commandes et options Faulthandler
 
