@@ -243,6 +243,8 @@ nums = []
 - `args` : Affiche les arguments reçus par la fonction courante (`nums = []`).
 - `nums = [1]` : Modification dynamique de l'état d'une variable directement dans le débogueur, évitant l'erreur de division par zéro et permettant de tester immédiatement le comportement du reste du code.
 
+> **Astuce (`display`)** : Lorsque vous avancez pas-à-pas dans une boucle (par exemple avec `nums = [10, 20, 30]`), utilisez `display total` au lieu de taper `p total` à chaque fois. PDB affichera automatiquement `total` dès que sa valeur change (`display total: 10  [old: 0]`). Utilisez `undisplay` pour arrêter le suivi.
+
 ---
 
 ### 4. `pdb-condition.py` — Points d'arrêt conditionnels
@@ -935,6 +937,8 @@ Current thread 0x0000150e66b84740 (most recent call first):
 | `list` | `l` | Affiche 11 lignes de code autour de la ligne courante. |
 | `print` | `p <expr>` | Évalue et affiche la valeur d'une variable ou d'une expression. |
 | `pp` | `pp <expr>` | Affiche joliment (*pretty-print*) la structure d'une variable complexe. |
+| `display` | `display <expr>` | Affiche automatiquement la valeur de `<expr>` à chaque arrêt dès qu'elle change. |
+| `undisplay` | `undisplay <expr>` | Arrête l'affichage automatique de `<expr>`. |
 | `args` | `a` | Affiche la liste des arguments reçus par la fonction courante. |
 | `break` | `b <ligne>` | Définit un point d'arrêt au numéro de ligne indiqué. |
 | `break` (cond) | `b <ligne>, <cond>` | Définit un point d'arrêt conditionnel qui ne se déclenche que si `<cond>` est vraie. |

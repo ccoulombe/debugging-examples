@@ -243,6 +243,8 @@ nums = []
 - `args`: Displays the arguments received by the current function (`nums = []`).
 - `nums = [1]`: Dynamically modifies a variable's state directly in the debugger, bypassing the zero division error and immediately testing subsequent behavior.
 
+> **Tip (`display`)**: When stepping through a loop (for example if `nums = [10, 20, 30]`), use `display total` instead of typing `p total` after every step. PDB will automatically print `total` whenever its value changes (`display total: 10  [old: 0]`). Use `undisplay` to stop watching it.
+
 ---
 
 ### 4. `pdb-condition.py` — Conditional Breakpoints
@@ -935,6 +937,8 @@ Current thread 0x0000150e66b84740 (most recent call first):
 | `list` | `l` | Display 11 lines of code around current line. |
 | `print` | `p <expr>` | Evaluate and display value of variable or expression. |
 | `pp` | `pp <expr>` | Pretty-print structure of complex variable. |
+| `display` | `display <expr>` | Automatically display value of `<expr>` each time it changes when execution stops. |
+| `undisplay` | `undisplay <expr>` | Stop automatically displaying `<expr>`. |
 | `args` | `a` | Display list of arguments received by current function. |
 | `break` | `b <line>` | Set breakpoint at specified line number. |
 | `break` (cond) | `b <line>, <cond>` | Set conditional breakpoint triggering only if `<cond>` is true. |
