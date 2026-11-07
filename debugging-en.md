@@ -785,14 +785,14 @@ Current thread 0x0000150e66b84740 (most recent call first):
 File : [hpc-mpi-deadlock.py](hpc-mpi-deadlock.py)
 
 #### Description
-When using `mpi4py` distributed across multiple compute nodes, a rank (process) can hang waiting indefinitely for a message. By binding a custom signal (like `SIGUSR1`) to `faulthandler` for all threads, it is possible to send a signal to all processes via `scancel` to display the state of each rank.
+When using `mpi4py` distributed across multiple compute nodes, each MPI rank runs as a separate process and can hang waiting indefinitely for a message. By binding a custom signal (like `SIGUSR1`) to `faulthandler` in each process (`all_threads=True` also includes any threads within that rank's process), you can broadcast the signal to all ranks via `scancel` (or `kill`) to display the state of each rank.
 
 ```python
 import faulthandler
 import signal
 from mpi4py import MPI
 
-# Registers SIGUSR1 to print the trace of all threads
+# Registers SIGUSR1 in each MPI rank (process) to print its traceback
 faulthandler.register(signal.SIGUSR1, all_threads=True)
 
 comm = MPI.COMM_WORLD
@@ -801,12 +801,12 @@ rank = comm.Get_rank()
 if rank == 0:
     print("Rank 0 is waiting for rank 1...")
     # Bug: Rank 0 waits for a message that will never be sent
-    data = comm.recv(source=1, tag=11)
+    data = comm.recv(source=1, tag=11)  # Rank 0 process blocks here
 else:
     print(f"Rank {rank} is busy...")
     import time
     while True:
-        time.sleep(1)
+        time.sleep(1)  # Other rank process loops here
 ```
 
 #### Execution
