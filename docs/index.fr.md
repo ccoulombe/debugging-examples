@@ -63,6 +63,7 @@ Dès le lancement, Python marque une pause à la ligne 2 (`breakpoint()`) :
 
 (Pdb) q
 ```
+
 - `ll` (*long list*) : Affiche l'intégralité du code source de la fonction active, avec `->` indiquant la ligne courante.
 - `n` (*next*) : Exécute la ligne courante et s'arrête à la ligne suivante (`return x * 2`).
 - `p x` (*print*) : Affiche la valeur de l'argument `x` (`3`).
@@ -121,6 +122,7 @@ python pdb-set_trace.py
 (Pdb) c
 3 * 2 is 6
 ```
+
 - `p x` : Affiche la variable `x`.
 - `x * 2` : Évalue n'importe quelle expression Python valide dans le contexte du cadre local.
 - `c` (*continue*) : Reprend l'exécution normale du programme jusqu'à la fin ou jusqu'au point d'arrêt suivant.
@@ -217,6 +219,7 @@ nums = []
 
 (Pdb) q
 ```
+
 - `s` (*step into*) : Descend à l'intérieur de l'appel de fonction `average()`.
 - `args` : Affiche les arguments reçus par la fonction courante (`nums = []`).
 - `nums = [1]` : Modification dynamique de l'état d'une variable directement dans le débogueur, évitant l'erreur de division par zéro et permettant de tester immédiatement le comportement du reste du code.
@@ -277,6 +280,7 @@ Breakpoint 1 at pdb-condition.py:3
 (Pdb) args
 items = [1, 2, 3, -1, 5]
 ```
+
 - `b 3, x<0` : Crée le point d'arrêt numéro 1 à la ligne 3 avec la condition `x < 0`.
 - `c` (*continue*) : Le programme traite les valeurs positives (0, 1, 2) sans interruption, puis s'arrête exactement lors de l'itération où `x == -1`.
 
@@ -346,6 +350,7 @@ The program finished and will be restarted
 
 (Pdb) q
 ```
+
 - `-c "b 6"` : Définit le point d'arrêt à la ligne 6 dès le démarrage du débogueur.
 - `type(...)` : Révèle que la valeur stockée sous la clé `'count'` est une chaîne (`str`).
 - `data['count'] = 12` : Corrige la valeur en mémoire, permettant à l'addition de s'exécuter sans erreur et de retourner `17`.
@@ -412,6 +417,7 @@ Running 'cont' or 'step' will restart the program
 
 (Pdb) q
 ```
+
 - `-c continue` : Lance immédiatement l'exécution sans s'arrêter à la ligne 1, et n'ouvre PDB que si une exception non gérée est levée.
 - `w` (*where*) : Affiche la pile d'appels complète ayant mené à l'exception (`<module>()` -> `process()` -> `invert()`).
 - `up` : Remonte d'un niveau dans la pile d'appels, de `invert(x)` vers `process(nums)`, afin d'inspecter l'indice de boucle `i` (`2`) et la valeur courante `n` (`0`).
@@ -604,6 +610,7 @@ Fichier : [:fontawesome-brands-github: pdb-breakpoint.ipynb](https://github.com/
 Utilisation d'un point d'arrêt directement au cœur d'une cellule de *notebook* Jupyter en utilisant `IPython.core.debugger.set_trace()`. Lors de l'évaluation de la cellule, une invite interactive `ipdb` s'affiche directement dans la zone de sortie de la cellule.
 
 #### Contenu :
+
 - **Cellule 1** :
   ```python
   from IPython.core.debugger import set_trace
@@ -639,6 +646,7 @@ Fichier : [:fontawesome-brands-github: pdb-postmortem.ipynb](https://github.com/
 Utilisation du mode post-mortem automatique d'IPython via `%pdb on` (ou `%debug`). Lorsqu'une exception non interceptée survient (ici `TypeError: can only concatenate str (not "int") to str`), IPython bascule automatiquement dans `ipdb` à l'emplacement exact de la ligne fautive.
 
 #### Contenu :
+
 - **Cellule 1** :
   ```python
   def load_data():
@@ -691,6 +699,7 @@ Lorsqu'un notebook Jupyter subit une erreur fatale au niveau C (erreur de segmen
 Cet exemple montre comment configurer `faulthandler.enable(open("faults.log", "w"))` pour rediriger la trace du crash vers un fichier journal persistant (`faults.log`).
 
 #### Contenu :
+
 - **Cellule 1** :
   ```python
   import faulthandler

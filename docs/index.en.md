@@ -63,6 +63,7 @@ Upon startup, Python pauses at line 2 (`breakpoint()`):
 
 (Pdb) q
 ```
+
 - `ll` (*long list*): Displays the complete source code of the active function, with `->` marking the current line.
 - `n` (*next*): Executes the current line and stops at the next line (`return x * 2`).
 - `p x` (*print*): Displays the value of argument `x` (`3`).
@@ -121,6 +122,7 @@ python pdb-set_trace.py
 (Pdb) c
 3 * 2 is 6
 ```
+
 - `p x`: Displays variable `x`.
 - `x * 2`: Evaluates any valid Python expression within the local frame's context.
 - `c` (*continue*): Resumes normal program execution until completion or the next breakpoint.
@@ -217,6 +219,7 @@ nums = []
 
 (Pdb) q
 ```
+
 - `s` (*step into*): Steps into the `average()` function call.
 - `args`: Displays the arguments received by the current function (`nums = []`).
 - `nums = [1]`: Dynamically modifies a variable's state directly in the debugger, bypassing the zero division error and immediately testing subsequent behavior.
@@ -277,6 +280,7 @@ Breakpoint 1 at pdb-condition.py:3
 (Pdb) args
 items = [1, 2, 3, -1, 5]
 ```
+
 - `b 3, x<0`: Creates breakpoint number 1 at line 3 with condition `x < 0`.
 - `c` (*continue*): The program processes positive values (0, 1, 2) without interruption, then stops exactly at the iteration where `x == -1`.
 
@@ -346,6 +350,7 @@ The program finished and will be restarted
 
 (Pdb) q
 ```
+
 - `-c "b 6"`: Sets the breakpoint at line 6 right upon debugger launch.
 - `type(...)`: Reveals that the value stored under key `'count'` is a string (`str`).
 - `data['count'] = 12`: Corrects the value in memory, allowing the addition to execute without error and return `17`.
@@ -412,6 +417,7 @@ Running 'cont' or 'step' will restart the program
 
 (Pdb) q
 ```
+
 - `-c continue`: Immediately starts execution without stopping at line 1, dropping into PDB only if an unhandled exception is raised.
 - `w` (*where*): Displays the full call stack leading to the crash (`<module>()` -> `process()` -> `invert()`).
 - `up`: Moves one frame up the call stack from `invert(x)` into `process(nums)` to inspect the loop index `i` (`2`) and current value `n` (`0`).
@@ -604,6 +610,7 @@ File : [:fontawesome-brands-github: pdb-breakpoint.ipynb](https://github.com/cco
 Using a breakpoint directly inside a Jupyter notebook cell using `IPython.core.debugger.set_trace()`. When evaluating the cell, an interactive `ipdb` prompt appears directly in the cell's output area.
 
 #### Content:
+
 - **Cell 1**:
   ```python
   from IPython.core.debugger import set_trace
@@ -639,6 +646,7 @@ File : [:fontawesome-brands-github: pdb-postmortem.ipynb](https://github.com/cco
 Using IPython's automatic post-mortem mode via `%pdb on` (or `%debug`). When an uncaught exception occurs (here `TypeError: can only concatenate str (not "int") to str`), IPython automatically drops into `ipdb` at the exact location of the faulty line.
 
 #### Content:
+
 - **Cell 1**:
   ```python
   def load_data():
@@ -691,6 +699,7 @@ When a Jupyter notebook suffers a fatal C-level error (a segmentation fault for 
 This example shows how to configure `faulthandler.enable(open("faults.log", "w"))` to redirect the crash trace to a persistent log file (`faults.log`).
 
 #### Content:
+
 - **Cell 1**:
   ```python
   import faulthandler
