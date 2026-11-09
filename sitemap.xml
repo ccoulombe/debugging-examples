@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://ccoulombe.github.io/debugging-examples/</loc>
+        <lastmod>2026-11-09</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ccoulombe.github.io/debugging-examples/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://ccoulombe.github.io/debugging-examples/fr/"/>
+    </url>
+    <url>
+        <loc>https://ccoulombe.github.io/debugging-examples/fr/</loc>
+        <lastmod>2026-11-09</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://ccoulombe.github.io/debugging-examples/fr/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://ccoulombe.github.io/debugging-examples/"/>
+    </url>
+</urlset>

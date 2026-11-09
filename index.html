@@ -1,0 +1,2116 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ccoulombe.github.io/debugging-examples/">
+      
+      
+      
+      
+        
+          <link rel="alternate" href="/debugging-examples/" hreflang="en">
+        
+          <link rel="alternate" href="/debugging-examples/fr/" hreflang="fr">
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Python Debugging Examples</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python-debugging-examples-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Python Debugging Examples" class="md-header__button md-logo" aria-label="Python Debugging Examples" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python Debugging Examples
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Python Debugging Examples Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/debugging-examples/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/debugging-examples/fr/" hreflang="fr" class="md-select__link">
+              Français
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Python Debugging Examples" class="md-nav__button md-logo" aria-label="Python Debugging Examples" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
+
+    </a>
+    Python Debugging Examples
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Debugging Examples Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Debugging Examples Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debugging Tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pdb-examples-interactive-python-debugger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDB Examples (Interactive Python Debugger)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PDB Examples (Interactive Python Debugger)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-pdb-breakpointpy-breakpoints-breakpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. pdb-breakpoint.py — Breakpoints (breakpoint)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-pdb-set_tracepy-classic-method-pdbset_trace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. pdb-set_trace.py — Classic Method pdb.set_trace()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pdb-averagepy-command-line-debugging-step-by-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. pdb-average.py — Command-Line Debugging, Step-by-Step
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-pdb-conditionpy-conditional-breakpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. pdb-condition.py — Conditional Breakpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-pdb-datapy-command-line-initialization-c-and-type-mismatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. pdb-data.py — Command-Line Initialization (-c) and Type Mismatch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-pdb-postmortempy-command-line-post-mortem-debugging-c-continue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. pdb-postmortem.py — Command-Line Post-Mortem Debugging (-c continue)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faulthandler-examples-low-level-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Faulthandler Examples (Low-Level Diagnostics)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Faulthandler Examples (Low-Level Diagnostics)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#7-faulthandler-segfaultpy-segmentation-faults-sigsegv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. faulthandler-segfault.py — Segmentation Faults (SIGSEGV)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-faulthandler-sigillpy-command-line-activation-x-faulthandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. faulthandler-sigill.py — Command-Line Activation (-X faulthandler)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-faulthandler-hangpy-hang-detection-and-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. faulthandler-hang.py — Hang Detection and Timeout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-faulthandler-sigusrpy-on-demand-signal-inspection-and-process-attachment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. faulthandler-sigusr.py — On-Demand Signal Inspection and Process Attachment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jupyter-examples-notebooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jupyter Examples (Notebooks)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Jupyter Examples (Notebooks)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-pdb-breakpointipynb-interactive-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. pdb-breakpoint.ipynb — Interactive Debugging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-pdb-postmortemipynb-post-mortem-debugging-with-pdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. pdb-postmortem.ipynb — Post-Mortem Debugging with %pdb
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-faulthandler-segfaultipynb-capturing-kernel-crashes-to-a-log-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. faulthandler-segfault.ipynb — Capturing Kernel Crashes to a Log File
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-examples-additional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Examples (Additional)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical Examples (Additional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#14-hpc-interactive-pdbpy-interactive-pdb-on-compute-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. hpc-interactive-pdb.py — Interactive PDB on Compute Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-hpc-io-watchdogpy-io-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. hpc-io-watchdog.py — I/O Block
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-hpc-slurm-sigtermpy-infinite-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. hpc-slurm-sigterm.py — Infinite loop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-hpc-mpi-deadlockpy-mpi-deadlocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. hpc-mpi-deadlock.py — MPI Deadlocks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#essential-pdb-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Essential PDB Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faulthandler-commands-and-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Faulthandler Commands and Options
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipython-jupyter-magic-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPython / Jupyter Magic Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debugging Tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pdb-examples-interactive-python-debugger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDB Examples (Interactive Python Debugger)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PDB Examples (Interactive Python Debugger)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-pdb-breakpointpy-breakpoints-breakpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. pdb-breakpoint.py — Breakpoints (breakpoint)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-pdb-set_tracepy-classic-method-pdbset_trace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. pdb-set_trace.py — Classic Method pdb.set_trace()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pdb-averagepy-command-line-debugging-step-by-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. pdb-average.py — Command-Line Debugging, Step-by-Step
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-pdb-conditionpy-conditional-breakpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. pdb-condition.py — Conditional Breakpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-pdb-datapy-command-line-initialization-c-and-type-mismatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. pdb-data.py — Command-Line Initialization (-c) and Type Mismatch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-pdb-postmortempy-command-line-post-mortem-debugging-c-continue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. pdb-postmortem.py — Command-Line Post-Mortem Debugging (-c continue)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faulthandler-examples-low-level-diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Faulthandler Examples (Low-Level Diagnostics)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Faulthandler Examples (Low-Level Diagnostics)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#7-faulthandler-segfaultpy-segmentation-faults-sigsegv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. faulthandler-segfault.py — Segmentation Faults (SIGSEGV)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-faulthandler-sigillpy-command-line-activation-x-faulthandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. faulthandler-sigill.py — Command-Line Activation (-X faulthandler)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-faulthandler-hangpy-hang-detection-and-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. faulthandler-hang.py — Hang Detection and Timeout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-faulthandler-sigusrpy-on-demand-signal-inspection-and-process-attachment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. faulthandler-sigusr.py — On-Demand Signal Inspection and Process Attachment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jupyter-examples-notebooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jupyter Examples (Notebooks)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Jupyter Examples (Notebooks)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-pdb-breakpointipynb-interactive-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. pdb-breakpoint.ipynb — Interactive Debugging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-pdb-postmortemipynb-post-mortem-debugging-with-pdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. pdb-postmortem.ipynb — Post-Mortem Debugging with %pdb
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-faulthandler-segfaultipynb-capturing-kernel-crashes-to-a-log-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. faulthandler-segfault.ipynb — Capturing Kernel Crashes to a Log File
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-examples-additional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical Examples (Additional)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical Examples (Additional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#14-hpc-interactive-pdbpy-interactive-pdb-on-compute-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. hpc-interactive-pdb.py — Interactive PDB on Compute Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-hpc-io-watchdogpy-io-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. hpc-io-watchdog.py — I/O Block
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-hpc-slurm-sigtermpy-infinite-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. hpc-slurm-sigterm.py — Infinite loop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-hpc-mpi-deadlockpy-mpi-deadlocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. hpc-mpi-deadlock.py — MPI Deadlocks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#essential-pdb-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Essential PDB Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faulthandler-commands-and-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Faulthandler Commands and Options
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipython-jupyter-magic-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPython / Jupyter Magic Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+<h1 id="python-debugging-examples-guide">Python Debugging Examples Guide<a class="headerlink" href="#python-debugging-examples-guide" title="Permanent link">&para;</a></h1>
+<p>You will find a detailed overview of the debugging examples contained in this repository. It details how each example works, the issues illustrated, the commands needed to run them, and how to interact with the debugging tools.</p>
+<hr />
+<h2 id="debugging-tools">Debugging Tools<a class="headerlink" href="#debugging-tools" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong><a href="https://docs.python.org/3/library/functions.html#print"><code>print()</code></a></strong>:
+   The fundamental built-in function for quick, lightweight inspection of variables and execution flow.</li>
+<li><strong><a href="https://docs.python.org/3/library/trace.html"><code>trace</code></a> (<code>python -m trace</code>)</strong>:
+   Standard library module to trace program execution line by line, generate execution count tables, and produce code coverage reports without modifying the code.</li>
+<li><strong><a href="https://github.com/alexmojaki/snoop"><code>snoop</code></a> | <a href="https://github.com/gruns/icecream"><code>icecream</code></a></strong>:
+   Popular third-party debugging and inspection libraries: <code>icecream</code> provides a clean, readable alternative to <code>print()</code> with automatic expression and location printing (<code>ic(x)</code>), while <code>snoop</code> acts as a function decorator or context manager that logs line-by-line execution and variable changes.</li>
+<li><strong><a href="https://docs.python.org/3/library/pdb.html"><code>pdb</code></a> (Python Debugger)</strong>:
+   The interactive source-code debugger included in Python's standard library. It supports setting breakpoints, stepping through code line-by-line (<em>step-by-step</em>), inspecting call stack frames (<em>stack frames</em>), and modifying variables dynamically at runtime.</li>
+<li><strong><a href="https://docs.python.org/3/library/faulthandler.html"><code>faulthandler</code></a></strong>:
+   Introduced in Python 3.3, this standard module catches low-level fault signals (such as <code>SIGSEGV</code>, <code>SIGFPE</code>, <code>SIGABRT</code>, <code>SIGBUS</code>, or <code>SIGILL</code>) as well as thread deadlocks. Because these brutal crashes terminate the Python runtime before <code>try...except</code> blocks can execute, <code>faulthandler</code> directly writes the Python call stack to standard error or to a file.</li>
+<li><strong><a href="https://ipython.readthedocs.io/">IPython</a> / Jupyter Debugging (<a href="https://github.com/gotcha/ipdb"><code>ipdb</code></a>)</strong>:
+   Interactive environments integrate <code>ipdb</code> (an enhanced version of PDB offering syntax highlighting and autocompletion) via magic commands like <code>%pdb</code> or <code>%debug</code>, as well as the <code>set_trace()</code> function.</li>
+</ol>
+<hr />
+<h2 id="pdb-examples-interactive-python-debugger">PDB Examples (Interactive Python Debugger)<a class="headerlink" href="#pdb-examples-interactive-python-debugger" title="Permanent link">&para;</a></h2>
+<h3 id="1-pdb-breakpointpy-breakpoints-breakpoint">1. <code>pdb-breakpoint.py</code> — Breakpoints (<code>breakpoint</code>)<a class="headerlink" href="#1-pdb-breakpointpy-breakpoints-breakpoint" title="Permanent link">&para;</a></h3>
+<p>File: <a href="https://github.com/ccoulombe/debugging-examples/blob/main/pdb-breakpoint.py"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span> pdb-breakpoint.py</a></p>
+<h4 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h4>
+<p>Introduced in Python 3.7 (<a href="https://peps.python.org/pep-0553/">PEP 553</a>), the built-in <code>breakpoint()</code> function suspends program execution and drops directly into the configured debugger (by default <code>pdb</code>).
+In this example, calling <code>double(val)</code> immediately hits <code>breakpoint()</code>, interrupts instruction flow, and opens the <code>(Pdb)</code> prompt.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">double</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>   <span class="nb">breakpoint</span><span class="p">()</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>   <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="n">val</span> <span class="o">=</span> <span class="mi">3</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2"> * 2 is </span><span class="si">{</span><span class="n">double</span><span class="p">(</span><span class="n">val</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="execution">Execution<a class="headerlink" href="#execution" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>python<span class="w"> </span>pdb-breakpoint.py
+</code></pre></div>
+<h4 id="walkthrough">Walkthrough<a class="headerlink" href="#walkthrough" title="Permanent link">&para;</a></h4>
+<p>Upon startup, Python pauses at line 2 (<code>breakpoint()</code>):
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&gt; pdb-breakpoint.py(2)double()
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>-&gt; breakpoint()
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>(Pdb) ll
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  1   def double(x):
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  2  -&gt;    breakpoint()
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  3      return x * 2
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>(Pdb) n
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>&gt; pdb-breakpoint.py(3)double()
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>-&gt; return x * 2
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>(Pdb) p x
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>3
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>(Pdb) q
+</code></pre></div></p>
+<ul>
+<li><code>ll</code> (<em>long list</em>): Displays the complete source code of the active function, with <code>-&gt;</code> marking the current line.</li>
+<li><code>n</code> (<em>next</em>): Executes the current line and stops at the next line (<code>return x * 2</code>).</li>
+<li><code>p x</code> (<em>print</em>): Displays the value of argument <code>x</code> (<code>3</code>).</li>
+<li><code>q</code> (<em>quit</em>): Quits the debugger and terminates the program.</li>
+</ul>
+<h4 id="controlling-breakpoint-via-pythonbreakpoint">Controlling <code>breakpoint()</code> via <code>PYTHONBREAKPOINT</code><a class="headerlink" href="#controlling-breakpoint-via-pythonbreakpoint" title="Permanent link">&para;</a></h4>
+<p>Unlike <code>pdb.set_trace()</code>, <code>breakpoint()</code> checks the <code>PYTHONBREAKPOINT</code> environment variable at runtime, allowing you to disable breakpoints or switch debuggers without modifying source code:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Ignore all breakpoint() calls</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nv">PYTHONBREAKPOINT</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>python<span class="w"> </span>pdb-breakpoint.py
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Use an alternative debugger (e.g., ipdb or pudb)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nv">PYTHONBREAKPOINT</span><span class="o">=</span>ipdb.set_trace<span class="w"> </span>python<span class="w"> </span>pdb-breakpoint.py
+</code></pre></div></p>
+<hr />
+<h3 id="2-pdb-set_tracepy-classic-method-pdbset_trace">2. <code>pdb-set_trace.py</code> — Classic Method <code>pdb.set_trace()</code><a class="headerlink" href="#2-pdb-set_tracepy-classic-method-pdbset_trace" title="Permanent link">&para;</a></h3>
+<p>File: <a href="https://github.com/ccoulombe/debugging-examples/blob/main/pdb-set_trace.py"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span> pdb-set_trace.py</a></p>
+<h4 id="description_1">Description<a class="headerlink" href="#description_1" title="Permanent link">&para;</a></h4>
+<p>Illustrates the traditional approach used in Python versions prior to 3.7: explicitly importing the <code>pdb</code> module and calling <code>pdb.set_trace()</code>. The example also highlights the debugger's ability to directly evaluate Python expressions on the fly.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span>
+<span class="normal"><a href="#__codelineno-4-7">7</a></span>
+<span class="normal"><a href="#__codelineno-4-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pdb</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">double</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>   <span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>   <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="n">val</span> <span class="o">=</span> <span class="mi">3</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2"> * 2 is </span><span class="si">{</span><span class="n">double</span><span class="p">(</span><span class="n">val</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="execution_1">Execution<a class="headerlink" href="#execution_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>python<span class="w"> </span>pdb-set_trace.py
+</code></pre></div>
+<h4 id="walkthrough_1">Walkthrough<a class="headerlink" href="#walkthrough_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>&gt; pdb-set_trace.py(4)double()
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>-&gt; pdb.set_trace()
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>(Pdb) ll
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>  3   def double(x):
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>  4  -&gt;    pdb.set_trace()
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>  5      return x * 2
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>(Pdb) p x
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>3
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>(Pdb) x * 2
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>6
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>(Pdb) c
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>3 * 2 is 6
+</code></pre></div>
+<ul>
+<li><code>p x</code>: Displays variable <code>x</code>.</li>
+<li><code>x * 2</code>: Evaluates any valid Python expression within the local frame's context.</li>
+<li><code>c</code> (<em>continue</em>): Resumes normal program execution until completion or the next breakpoint.</li>
+</ul>
+<hr />
+<h3 id="3-pdb-averagepy-command-line-debugging-step-by-step">3. <code>pdb-average.py</code> — Command-Line Debugging, Step-by-Step<a class="headerlink" href="#3-pdb-averagepy-command-line-debugging-step-by-step" title="Permanent link">&para;</a></h3>
+<p>File: <a href="https://github.com/ccoulombe/debugging-examples/blob/main/pdb-average.py"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span> pdb-average.py</a></p>
+<h4 id="description_2">Description<a class="headerlink" href="#description_2" title="Permanent link">&para;</a></h4>
+<p>Runs a script under PDB without modifying its source code using the <code>-m pdb</code> option.
+The function calculates the average of a list of numbers. When invoked with an empty list <code>[]</code>, a <code>ZeroDivisionError</code> exception is raised during the <code>total / len(nums)</code> calculation.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span>
+<span class="normal"><a href="#__codelineno-7-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">average</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>        <span class="n">total</span> <span class="o">+=</span> <span class="n">n</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a>    <span class="k">return</span> <span class="n">total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">average</span><span class="p">([]))</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="execution_2">Execution<a class="headerlink" href="#execution_2" title="Permanent link">&para;</a></h4>
+<h5 id="standard-execution-reproducing-the-error">Standard execution (reproducing the error):<a class="headerlink" href="#standard-execution-reproducing-the-error" title="Permanent link">&para;</a></h5>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>python<span class="w"> </span>pdb-average.py
+</code></pre></div>
+Output:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Traceback (most recent call last):
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>  File "pdb-average.py", line 7, in &lt;module&gt;
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    print(average([]))
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>  File "pdb-average.py", line 5, in average
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    return total / len(nums)
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>ZeroDivisionError: division by zero
+</code></pre></div></p>
+<h5 id="launching-with-pdb-from-the-first-instruction">Launching with PDB from the first instruction:<a class="headerlink" href="#launching-with-pdb-from-the-first-instruction" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>python<span class="w"> </span>-m<span class="w"> </span>pdb<span class="w"> </span>pdb-average.py
+</code></pre></div>
+<h4 id="walkthrough_2">Walkthrough<a class="headerlink" href="#walkthrough_2" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>&gt; pdb-average.py(1)&lt;module&gt;()
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>-&gt; def average(nums):
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>(Pdb) n
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>&gt; pdb-average.py(7)&lt;module&gt;()
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>-&gt; print(average([]))
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>(Pdb) s
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>--Call--
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>&gt; pdb-average.py(1)average()
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>-&gt; def average(nums):
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>(Pdb) ll
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>  1  -&gt; def average(nums):
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>  2       total = 0
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>  3       for n in nums:
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>  4           total += n
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>  5       return total / len(nums)
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>(Pdb) n
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>&gt; pdb-average.py(2)average()
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>-&gt; total = 0
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>(Pdb) n
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>&gt; pdb-average.py(3)average()
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a>-&gt; for n in nums:
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>
+<a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a>(Pdb) n
+<a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a>&gt; pdb-average.py(5)average()
+<a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a>-&gt; return total / len(nums)
+<a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a>
+<a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a>(Pdb) args
+<a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a>nums = []
+<a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a>
+<a id="__codelineno-11-35" name="__codelineno-11-35" href="#__codelineno-11-35"></a>(Pdb) nums = [1]
+<a id="__codelineno-11-36" name="__codelineno-11-36" href="#__codelineno-11-36"></a>
+<a id="__codelineno-11-37" name="__codelineno-11-37" href="#__codelineno-11-37"></a>(Pdb) n
+<a id="__codelineno-11-38" name="__codelineno-11-38" href="#__codelineno-11-38"></a>--Return--
+<a id="__codelineno-11-39" name="__codelineno-11-39" href="#__codelineno-11-39"></a>&gt; pdb-average.py(5)average()-&gt;0.0
+<a id="__codelineno-11-40" name="__codelineno-11-40" href="#__codelineno-11-40"></a>-&gt; return total / len(nums)
+<a id="__codelineno-11-41" name="__codelineno-11-41" href="#__codelineno-11-41"></a>
+<a id="__codelineno-11-42" name="__codelineno-11-42" href="#__codelineno-11-42"></a>(Pdb) n
+<a id="__codelineno-11-43" name="__codelineno-11-43" href="#__codelineno-11-43"></a>0.0
+<a id="__codelineno-11-44" name="__codelineno-11-44" href="#__codelineno-11-44"></a>--Return--
+<a id="__codelineno-11-45" name="__codelineno-11-45" href="#__codelineno-11-45"></a>&gt; pdb-average.py(7)&lt;module&gt;()-&gt;None
+<a id="__codelineno-11-46" name="__codelineno-11-46" href="#__codelineno-11-46"></a>-&gt; print(average([]))
+<a id="__codelineno-11-47" name="__codelineno-11-47" href="#__codelineno-11-47"></a>
+<a id="__codelineno-11-48" name="__codelineno-11-48" href="#__codelineno-11-48"></a>(Pdb) q
+</code></pre></div>
+<ul>
+<li><code>s</code> (<em>step into</em>): Steps into the <code>average()</code> function call.</li>
+<li><code>args</code>: Displays the arguments received by the current function (<code>nums = []</code>).</li>
+<li><code>nums = [1]</code>: Dynamically modifies a variable's state directly in the debugger, bypassing the zero division error and immediately testing subsequent behavior.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title"><code>display</code></p>
+<p>When stepping through a loop (for example if <code>nums = [10, 20, 30]</code>), use <code>display total</code> instead of typing <code>p total</code> after every step. PDB will automatically print <code>total</code> whenever its value changes (<code>display total: 10  [old: 0]</code>). Use <code>undisplay</code> to stop watching it.</p>
+</div>
+<hr />
+<h3 id="4-pdb-conditionpy-conditional-breakpoints">4. <code>pdb-condition.py</code> — Conditional Breakpoints<a class="headerlink" href="#4-pdb-conditionpy-conditional-breakpoints" title="Permanent link">&para;</a></h3>
+<p>File: <a href="https://github.com/ccoulombe/debugging-examples/blob/main/pdb-condition.py"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span> pdb-condition.py</a></p>
+<h4 id="description_3">Description<a class="headerlink" href="#description_3" title="Permanent link">&para;</a></h4>
+<p>Setup of a conditional breakpoint that only interrupts the program when a specific condition is met.
+In this loop, the function iterates over integers and must raise a <code>ValueError</code> as soon as a number is negative:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span>
+<span class="normal"><a href="#__codelineno-12-5">5</a></span>
+<span class="normal"><a href="#__codelineno-12-6">6</a></span>
+<span class="normal"><a href="#__codelineno-12-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">items</span><span class="p">):</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a>    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">items</span><span class="p">):</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a>        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Negative value at index </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="n">process</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="execution_3">Execution<a class="headerlink" href="#execution_3" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>python<span class="w"> </span>-m<span class="w"> </span>pdb<span class="w"> </span>pdb-condition.py
+</code></pre></div>
+<h4 id="walkthrough_3">Walkthrough<a class="headerlink" href="#walkthrough_3" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>&gt; pdb-condition.py(1)&lt;module&gt;()
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>-&gt; def process(items):
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>(Pdb) ll
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>  1  -&gt; def process(items):
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>  2       for i, x in enumerate(items):
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>  3           if x &lt; 0:
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>  4               raise ValueError(f"Negative value at index {i}")
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>  5           print(i, x)
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>  6   
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>  7   process([1, 2, 3, -1, 5])
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>(Pdb) b 3, x&lt;0
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>Breakpoint 1 at pdb-condition.py:3
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>(Pdb) c
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>0 1
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>1 2
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>2 3
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>&gt; pdb-condition.py(3)process()
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>-&gt; if x &lt; 0:
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>
+<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a>(Pdb) p x
+<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>-1
+<a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>
+<a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a>(Pdb) args
+<a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a>items = [1, 2, 3, -1, 5]
+</code></pre></div>
+<ul>
+<li><code>b 3, x&lt;0</code>: Creates breakpoint number 1 at line 3 with condition <code>x &lt; 0</code>.</li>
+<li><code>c</code> (<em>continue</em>): The program processes positive values (0, 1, 2) without interruption, then stops exactly at the iteration where <code>x == -1</code>.</li>
+</ul>
+<hr />
+<h3 id="5-pdb-datapy-command-line-initialization-c-and-type-mismatch">5. <code>pdb-data.py</code> — Command-Line Initialization (<code>-c</code>) and Type Mismatch<a class="headerlink" href="#5-pdb-datapy-command-line-initialization-c-and-type-mismatch" title="Permanent link">&para;</a></h3>
+<p>File: <a href="https://github.com/ccoulombe/debugging-examples/blob/main/pdb-data.py"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span> pdb-data.py</a></p>
+<h4 id="description_4">Description<a class="headerlink" href="#description_4" title="Permanent link">&para;</a></h4>
+<p>Illustrates two key concepts:
+1. Automating the injection of debugging commands right at startup using the <code>-c</code> parameter.
+2. Diagnosing and correcting in memory a <code>TypeError</code> exception caused by an attempt to add a string and an integer (<code>"12" + 5</code>).</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-15-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-15-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-15-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-15-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-15-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-15-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-15-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-15-10">10</a></span>
+<span class="normal"><a href="#__codelineno-15-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">load_data</span><span class="p">():</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">"count"</span><span class="p">:</span> <span class="s2">"12"</span><span class="p">}</span>  <span class="c1"># BUG: count should be int</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_total</span><span class="p">():</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a>    <span class="n">data</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">()</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a>    <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="s2">"count"</span><span class="p">]</span> <span class="o">+</span> <span class="mi">5</span>  <span class="c1"># TypeError</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7"></a>
+<a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9"></a>    <span class="n">compute_total</span><span class="p">()</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10"></a>
+<a id="__codelineno-15-11" name="__codelineno-15-11"></a><span class="n">main</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="execution_4">Execution<a class="headerlink" href="#execution_4" title="Permanent link">&para;</a></h4>
+<h5 id="standard-execution">Standard execution:<a class="headerlink" href="#standard-execution" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>python<span class="w"> </span>pdb-data.py
+</code></pre></div>
+<h5 id="debugging-with-automatic-breakpoint-set-at-line-6">Debugging with automatic breakpoint set at line 6:<a class="headerlink" href="#debugging-with-automatic-breakpoint-set-at-line-6" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>python<span class="w"> </span>-m<span class="w"> </span>pdb<span class="w"> </span>-c<span class="w"> </span><span class="s2">"b 6"</span><span class="w"> </span>pdb-data.py
+</code></pre></div>
+<h4 id="walkthrough_4">Walkthrough<a class="headerlink" href="#walkthrough_4" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>Breakpoint 1 at pdb-data.py:6
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>&gt; pdb-data.py(1)&lt;module&gt;()
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>-&gt; def load_data():
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>(Pdb) c
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>&gt; pdb-data.py(6)compute_total()
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>-&gt; return data["count"] + 5  # TypeError
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>(Pdb) p data
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>{'count': '12'}
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>(Pdb) type(data['count'])
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>&lt;class 'str'&gt;
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>
+<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>(Pdb) data['count'] = 12
+<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>
+<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>(Pdb) n
+<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>--Return--
+<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>&gt; pdb-data.py(6)compute_total()-&gt;17
+<a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a>-&gt; return data["count"] + 5  # TypeError
+<a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a>
+<a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>(Pdb) c
+<a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a>The program finished and will be restarted
+<a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a>&gt; pdb-data.py(1)&lt;module&gt;()
+<a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a>
+<a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a>(Pdb) q
+</code></pre></div>
+<ul>
+<li><code>-c "b 6"</code>: Sets the breakpoint at line 6 right upon debugger launch.</li>
+<li><code>type(...)</code>: Reveals that the value stored under key <code>'count'</code> is a string (<code>str</code>).</li>
+<li><code>data['count'] = 12</code>: Corrects the value in memory, allowing the addition to execute without error and return <code>17</code>.</li>
+</ul>
+<hr />
+<h3 id="6-pdb-postmortempy-command-line-post-mortem-debugging-c-continue">6. <code>pdb-postmortem.py</code> — Command-Line Post-Mortem Debugging (<code>-c continue</code>)<a class="headerlink" href="#6-pdb-postmortempy-command-line-post-mortem-debugging-c-continue" title="Permanent link">&para;</a></h3>
+<p>File: <a href="https://github.com/ccoulombe/debugging-examples/blob/main/pdb-postmortem.py"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span> pdb-postmortem.py</a></p>
+<h4 id="description_5">Description<a class="headerlink" href="#description_5" title="Permanent link">&para;</a></h4>
+<p>Runs a script at normal speed under PDB using <code>-c continue</code> (or <code>-c c</code>) without setting any breakpoints in advance. When an unhandled exception occurs inside a helper function (<code>ZeroDivisionError</code> in <code>invert(x)</code>), PDB automatically enters <strong>post-mortem mode</strong> at the exact point of failure, allowing you to inspect the call stack (<code>w</code>) and move up (<code>up</code>) to the caller frame (<code>process(nums)</code>) to see which loop iteration caused the crash.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
+<span class="normal"><a href="#__codelineno-19-2">2</a></span>
+<span class="normal"><a href="#__codelineno-19-3">3</a></span>
+<span class="normal"><a href="#__codelineno-19-4">4</a></span>
+<span class="normal"><a href="#__codelineno-19-5">5</a></span>
+<span class="normal"><a href="#__codelineno-19-6">6</a></span>
+<span class="normal"><a href="#__codelineno-19-7">7</a></span>
+<span class="normal"><a href="#__codelineno-19-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">invert</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2"></a>    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">x</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3"></a>
+<a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">process</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5"></a>    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">invert</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7"></a>
+<a id="__codelineno-19-8" name="__codelineno-19-8"></a><span class="n">process</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="execution_5">Execution<a class="headerlink" href="#execution_5" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>python<span class="w"> </span>-m<span class="w"> </span>pdb<span class="w"> </span>-c<span class="w"> </span><span class="k">continue</span><span class="w"> </span>pdb-postmortem.py
+</code></pre></div>
+<h4 id="walkthrough_5">Walkthrough<a class="headerlink" href="#walkthrough_5" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>0.5
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>0.25
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>Traceback (most recent call last):
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>  File "pdb-postmortem.py", line 8, in &lt;module&gt;
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>    process([2, 4, 0, 8])
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>  File "pdb-postmortem.py", line 6, in process
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>    print(invert(n))
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>  File "pdb-postmortem.py", line 2, in invert
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>    return 1 / x
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>ZeroDivisionError: division by zero
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>Uncaught exception. Entering post mortem debugging
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>Running 'cont' or 'step' will restart the program
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>&gt; pdb-postmortem.py(2)invert()
+<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>-&gt; return 1 / x
+<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>
+<a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>(Pdb) p x
+<a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>0
+<a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a>
+<a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a>(Pdb) w
+<a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a>  pdb-postmortem.py(8)&lt;module&gt;()
+<a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a>-&gt; process([2, 4, 0, 8])
+<a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>  pdb-postmortem.py(6)process()
+<a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>-&gt; print(invert(n))
+<a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a>&gt; pdb-postmortem.py(2)invert()
+<a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a>-&gt; return 1 / x
+<a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a>
+<a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a>(Pdb) up
+<a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a>&gt; pdb-postmortem.py(6)process()
+<a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a>-&gt; print(invert(n))
+<a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a>
+<a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a>(Pdb) p i, n
+<a id="__codelineno-21-32" name="__codelineno-21-32" href="#__codelineno-21-32"></a>(2, 0)
+<a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a>
+<a id="__codelineno-21-34" name="__codelineno-21-34" href="#__codelineno-21-34"></a>(Pdb) q
+</code></pre></div>
+<ul>
+<li><code>-c continue</code>: Immediately starts execution without stopping at line 1, dropping into PDB only if an unhandled exception is raised.</li>
+<li><code>w</code> (<em>where</em>): Displays the full call stack leading to the crash (<code>&lt;module&gt;()</code> -&gt; <code>process()</code> -&gt; <code>invert()</code>).</li>
+<li><code>up</code>: Moves one frame up the call stack from <code>invert(x)</code> into <code>process(nums)</code> to inspect the loop index <code>i</code> (<code>2</code>) and current value <code>n</code> (<code>0</code>).</li>
+</ul>
+<hr />
+<h2 id="faulthandler-examples-low-level-diagnostics">Faulthandler Examples (Low-Level Diagnostics)<a class="headerlink" href="#faulthandler-examples-low-level-diagnostics" title="Permanent link">&para;</a></h2>
+<h3 id="7-faulthandler-segfaultpy-segmentation-faults-sigsegv">7. <code>faulthandler-segfault.py</code> — Segmentation Faults (<code>SIGSEGV</code>)<a class="headerlink" href="#7-faulthandler-segfaultpy-segmentation-faults-sigsegv" title="Permanent link">&para;</a></h3>
+<p>File: <a href="https://github.com/ccoulombe/debugging-examples/blob/main/faulthandler-segfault.py"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span> faulthandler-segfault.py</a></p>
+<h4 id="description_6">Description<a class="headerlink" href="#description_6" title="Permanent link">&para;</a></h4>
+<p>Calling <code>ctypes.string_at(0)</code> forces a NULL pointer dereference (<code>0x0</code>), which immediately triggers a memory access violation (<code>SIGSEGV</code>).
+Without <code>faulthandler</code>, the operating system would only display <code>Segmentation fault (core dumped)</code>. Thanks to <code>faulthandler.enable()</code>, the responsible Python code line as well as the C call stack are fully displayed before the process terminates.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span>
+<span class="normal"><a href="#__codelineno-22-2">2</a></span>
+<span class="normal"><a href="#__codelineno-22-3">3</a></span>
+<span class="normal"><a href="#__codelineno-22-4">4</a></span>
+<span class="normal"><a href="#__codelineno-22-5">5</a></span>
+<span class="normal"><a href="#__codelineno-22-6">6</a></span>
+<span class="normal"><a href="#__codelineno-22-7">7</a></span>
+<span class="normal"><a href="#__codelineno-22-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">faulthandler</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="n">faulthandler</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3"></a>
+<a id="__codelineno-22-4" name="__codelineno-22-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"About to crash..."</span><span class="p">)</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5"></a>
+<a id="__codelineno-22-6" name="__codelineno-22-6"></a><span class="c1"># Force a crash using ctypes</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">ctypes</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8"></a><span class="n">ctypes</span><span class="o">.</span><span class="n">string_at</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>   <span class="c1"># invalid memory access → segfault</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="execution_6">Execution<a class="headerlink" href="#execution_6" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>python<span class="w"> </span>faulthandler-segfault.py
+</code></pre></div>
+<h4 id="trace-output">Trace Output<a class="headerlink" href="#trace-output" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>About to crash...
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>Fatal Python error: Segmentation fault
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>Current thread 0x00007fb552718f00 [python] (most recent call first):
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>  File ".../ctypes/__init__.py", line 619 in string_at
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>  File "faulthandler-segfault.py", line 8 in &lt;module&gt;
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>Current thread's C stack trace (most recent call first):
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>...
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>[1]    273236 segmentation fault (core dumped)  python faulthandler-segfault.py
+</code></pre></div>
+<hr />
+<h3 id="8-faulthandler-sigillpy-command-line-activation-x-faulthandler">8. <code>faulthandler-sigill.py</code> — Command-Line Activation (<code>-X faulthandler</code>)<a class="headerlink" href="#8-faulthandler-sigillpy-command-line-activation-x-faulthandler" title="Permanent link">&para;</a></h3>
+<p>File: <a href="https://github.com/ccoulombe/debugging-examples/blob/main/faulthandler-sigill.py"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span> faulthandler-sigill.py</a></p>
+<h4 id="description_7">Description<a class="headerlink" href="#description_7" title="Permanent link">&para;</a></h4>
+<p>Shows how to enable <code>faulthandler</code> at the Python interpreter level without modifying a single line of source code, either with the CLI option <code>-X faulthandler</code>, or with the environment variable <code>PYTHONFAULTHANDLER=1</code>. The script deliberately emits the illegal hardware instruction signal (<code>SIGILL</code>).</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
+<span class="normal"><a href="#__codelineno-25-2">2</a></span>
+<span class="normal"><a href="#__codelineno-25-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">signal</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2"></a>
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="n">signal</span><span class="o">.</span><span class="n">raise_signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGILL</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="execution_7">Execution<a class="headerlink" href="#execution_7" title="Permanent link">&para;</a></h4>
+<h5 id="execution-without-faulthandler-raw-crash-without-context">Execution without faulthandler (raw crash without context):<a class="headerlink" href="#execution-without-faulthandler-raw-crash-without-context" title="Permanent link">&para;</a></h5>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>python<span class="w"> </span>faulthandler-sigill.py
+</code></pre></div>
+Output:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>illegal hardware instruction (core dumped)  python faulthandler-sigill.py
+</code></pre></div></p>
+<h5 id="execution-with-faulthandler-enabled-via-command-line">Execution with faulthandler enabled via command line:<a class="headerlink" href="#execution-with-faulthandler-enabled-via-command-line" title="Permanent link">&para;</a></h5>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>python<span class="w"> </span>-q<span class="w"> </span>-X<span class="w"> </span>faulthandler<span class="w"> </span>faulthandler-sigill.py
+</code></pre></div>
+Or alternatively:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="nv">PYTHONFAULTHANDLER</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>python<span class="w"> </span>faulthandler-sigill.py
+</code></pre></div></p>
+<h4 id="trace-output_1">Trace Output<a class="headerlink" href="#trace-output_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>Fatal Python error: Illegal instruction
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>Current thread 0x00007f2c55b28f00 [python] (most recent call first):
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>  File "faulthandler-sigill.py", line 3 in &lt;module&gt;
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>Current thread's C stack trace (most recent call first):
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>  Binary file "/lib64/libpython3.14.so.1.0", at _Py_DumpStack+...
+<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>  ...
+</code></pre></div>
+<hr />
+<h3 id="9-faulthandler-hangpy-hang-detection-and-timeout">9. <code>faulthandler-hang.py</code> — Hang Detection and Timeout<a class="headerlink" href="#9-faulthandler-hangpy-hang-detection-and-timeout" title="Permanent link">&para;</a></h3>
+<p>File: <a href="https://github.com/ccoulombe/debugging-examples/blob/main/faulthandler-hang.py"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span> faulthandler-hang.py</a></p>
+<h4 id="description_8">Description<a class="headerlink" href="#description_8" title="Permanent link">&para;</a></h4>
+<p>Allows identifying deadlocks or infinite loops (<em>spinlocks</em>) using <code>faulthandler.dump_traceback_later(timeout)</code>. If execution time exceeds the specified timeout (here 3 seconds), <code>faulthandler</code> displays the traceback of all Python threads on standard error (<code>sys.stderr</code>) without interrupting the process.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1">1</a></span>
+<span class="normal"><a href="#__codelineno-31-2">2</a></span>
+<span class="normal"><a href="#__codelineno-31-3">3</a></span>
+<span class="normal"><a href="#__codelineno-31-4">4</a></span>
+<span class="normal"><a href="#__codelineno-31-5">5</a></span>
+<span class="normal"><a href="#__codelineno-31-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">faulthandler</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3"></a>
+<a id="__codelineno-31-4" name="__codelineno-31-4"></a><span class="n">faulthandler</span><span class="o">.</span><span class="n">dump_traceback_later</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5"></a>
+<a id="__codelineno-31-6" name="__codelineno-31-6"></a><span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="execution_8">Execution<a class="headerlink" href="#execution_8" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>python<span class="w"> </span>faulthandler-hang.py
+</code></pre></div>
+<h4 id="trace-output_2">Trace Output<a class="headerlink" href="#trace-output_2" title="Permanent link">&para;</a></h4>
+<p>After exactly 3 seconds, the following traceback is emitted while the script continues sleeping until reaching 10 seconds:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>Timeout (0:00:03)!
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>Thread 0x00007f9a39ea6f00 [python] (most recent call first):
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>  File "faulthandler-hang.py", line 6 in &lt;module&gt;
+</code></pre></div></p>
+<hr />
+<h3 id="10-faulthandler-sigusrpy-on-demand-signal-inspection-and-process-attachment">10. <code>faulthandler-sigusr.py</code> — On-Demand Signal Inspection and Process Attachment<a class="headerlink" href="#10-faulthandler-sigusrpy-on-demand-signal-inspection-and-process-attachment" title="Permanent link">&para;</a></h3>
+<p>File: <a href="https://github.com/ccoulombe/debugging-examples/blob/main/faulthandler-sigusr.py"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span> faulthandler-sigusr.py</a></p>
+<h4 id="description_9">Description<a class="headerlink" href="#description_9" title="Permanent link">&para;</a></h4>
+<p>Presents two advanced techniques for examining a running or stuck Python process:
+1. Registering a signal handler with <code>faulthandler.register(signal.SIGUSR1)</code>. Upon receiving the <code>SIGUSR1</code> signal, the process immediately displays its execution stack without stopping.
+2. Attaching an interactive PDB debugger to a running process via the command <code>python -m pdb -p &lt;PID&gt;</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-34-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-34-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-34-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-34-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-34-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-34-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-34-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-34-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-34-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-34-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">faulthandler</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">signal</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<a id="__codelineno-34-4" name="__codelineno-34-4"></a>
+<a id="__codelineno-34-5" name="__codelineno-34-5"></a><span class="n">faulthandler</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGUSR1</span><span class="p">)</span>
+<a id="__codelineno-34-6" name="__codelineno-34-6"></a>
+<a id="__codelineno-34-7" name="__codelineno-34-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Send SIGUSR1"</span><span class="p">)</span>
+<a id="__codelineno-34-8" name="__codelineno-34-8"></a>
+<a id="__codelineno-34-9" name="__codelineno-34-9"></a><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<a id="__codelineno-34-10" name="__codelineno-34-10"></a>    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="execution_9">Execution<a class="headerlink" href="#execution_9" title="Permanent link">&para;</a></h4>
+<h5 id="terminal-1-starting-the-script">Terminal 1: Starting the script<a class="headerlink" href="#terminal-1-starting-the-script" title="Permanent link">&para;</a></h5>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>python<span class="w"> </span>faulthandler-sigusr.py
+</code></pre></div>
+Output:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>Send SIGUSR1
+</code></pre></div></p>
+<h5 id="terminal-2-option-a-sending-the-sigusr1-signal">Terminal 2 (Option A): Sending the SIGUSR1 signal<a class="headerlink" href="#terminal-2-option-a-sending-the-sigusr1-signal" title="Permanent link">&para;</a></h5>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="nb">kill</span><span class="w"> </span>-USR1<span class="w"> </span><span class="k">$(</span>pgrep<span class="w"> </span>-f<span class="w"> </span>faulthandler-sigusr.py<span class="k">)</span>
+</code></pre></div>
+In Terminal 1, the instantaneous traceback appears immediately and the loop continues execution:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>Current thread 0x00007fa455c49f00 [python] (most recent call first):
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>  File "faulthandler-sigusr.py", line 10 in &lt;module&gt;
+</code></pre></div></p>
+<h5 id="terminal-2-option-b-attaching-to-the-process">Terminal 2 (Option B): Attaching to the process<a class="headerlink" href="#terminal-2-option-b-attaching-to-the-process" title="Permanent link">&para;</a></h5>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>python<span class="w"> </span>-m<span class="w"> </span>pdb<span class="w"> </span>-p<span class="w"> </span><span class="k">$(</span>pgrep<span class="w"> </span>-f<span class="w"> </span>faulthandler-sigusr.py<span class="k">)</span>
+</code></pre></div>
+Output:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>&gt; faulthandler-sigusr.py(10)&lt;module&gt;()
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>-&gt; time.sleep(2)
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>(Pdb) 
+</code></pre></div></p>
+<hr />
+<h2 id="jupyter-examples-notebooks">Jupyter Examples (Notebooks)<a class="headerlink" href="#jupyter-examples-notebooks" title="Permanent link">&para;</a></h2>
+<h3 id="11-pdb-breakpointipynb-interactive-debugging">11. <code>pdb-breakpoint.ipynb</code> — Interactive Debugging<a class="headerlink" href="#11-pdb-breakpointipynb-interactive-debugging" title="Permanent link">&para;</a></h3>
+<p>File: <a href="https://github.com/ccoulombe/debugging-examples/blob/main/pdb-breakpoint.ipynb"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span> pdb-breakpoint.ipynb</a></p>
+<h4 id="description_10">Description<a class="headerlink" href="#description_10" title="Permanent link">&para;</a></h4>
+<p>Using a breakpoint directly inside a Jupyter notebook cell using <code>IPython.core.debugger.set_trace()</code>. When evaluating the cell, an interactive <code>ipdb</code> prompt appears directly in the cell's output area.</p>
+<h4 id="content">Content:<a class="headerlink" href="#content" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Cell 1</strong>:
+  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-41-1">1</a></span>
+<span class="normal"><a href="#__codelineno-41-2">2</a></span>
+<span class="normal"><a href="#__codelineno-41-3">3</a></span>
+<span class="normal"><a href="#__codelineno-41-4">4</a></span>
+<span class="normal"><a href="#__codelineno-41-5">5</a></span>
+<span class="normal"><a href="#__codelineno-41-6">6</a></span>
+<span class="normal"><a href="#__codelineno-41-7">7</a></span>
+<span class="normal"><a href="#__codelineno-41-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.core.debugger</span><span class="w"> </span><span class="kn">import</span> <span class="n">set_trace</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2"></a>
+<a id="__codelineno-41-3" name="__codelineno-41-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">average</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4"></a>    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-41-5" name="__codelineno-41-5"></a>    <span class="n">set_trace</span><span class="p">()</span> <span class="c1"># Breakpoint here</span>
+<a id="__codelineno-41-6" name="__codelineno-41-6"></a>    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+<a id="__codelineno-41-7" name="__codelineno-41-7"></a>        <span class="n">total</span> <span class="o">+=</span> <span class="n">n</span>
+<a id="__codelineno-41-8" name="__codelineno-41-8"></a>    <span class="k">return</span> <span class="n">total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div></li>
+<li><strong>Cell 2</strong>:
+  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-42-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">average</span><span class="p">([]))</span>
+</code></pre></div></td></tr></table></div></li>
+</ul>
+<h4 id="execution_10">Execution<a class="headerlink" href="#execution_10" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Start Jupyter:
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>jupyter<span class="w"> </span>lab
+</code></pre></div></li>
+<li>Open <a href="https://github.com/ccoulombe/debugging-examples/blob/main/pdb-breakpoint.ipynb"><code>pdb-breakpoint.ipynb</code></a>.</li>
+<li>Run Cell 1 to load the function.</li>
+<li>Run Cell 2: execution halts at <code>set_trace()</code> and the <code>ipdb&gt;</code> prompt opens, ready to receive your commands (<code>n</code>, <code>p nums</code>, <code>q</code>).</li>
+</ol>
+<hr />
+<h3 id="12-pdb-postmortemipynb-post-mortem-debugging-with-pdb">12. <code>pdb-postmortem.ipynb</code> — Post-Mortem Debugging with <code>%pdb</code><a class="headerlink" href="#12-pdb-postmortemipynb-post-mortem-debugging-with-pdb" title="Permanent link">&para;</a></h3>
+<p>File: <a href="https://github.com/ccoulombe/debugging-examples/blob/main/pdb-postmortem.ipynb"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span> pdb-postmortem.ipynb</a></p>
+<h4 id="description_11">Description<a class="headerlink" href="#description_11" title="Permanent link">&para;</a></h4>
+<p>Using IPython's automatic post-mortem mode via <code>%pdb on</code> (or <code>%debug</code>). When an uncaught exception occurs (here <code>TypeError: can only concatenate str (not "int") to str</code>), IPython automatically drops into <code>ipdb</code> at the exact location of the faulty line.</p>
+<h4 id="content_1">Content:<a class="headerlink" href="#content_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Cell 1</strong>:
+  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-44-1">1</a></span>
+<span class="normal"><a href="#__codelineno-44-2">2</a></span>
+<span class="normal"><a href="#__codelineno-44-3">3</a></span>
+<span class="normal"><a href="#__codelineno-44-4">4</a></span>
+<span class="normal"><a href="#__codelineno-44-5">5</a></span>
+<span class="normal"><a href="#__codelineno-44-6">6</a></span>
+<span class="normal"><a href="#__codelineno-44-7">7</a></span>
+<span class="normal"><a href="#__codelineno-44-8">8</a></span>
+<span class="normal"><a href="#__codelineno-44-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">load_data</span><span class="p">():</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">"count"</span><span class="p">:</span> <span class="s2">"12"</span><span class="p">}</span>  <span class="c1"># BUG: count should be int</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3"></a>
+<a id="__codelineno-44-4" name="__codelineno-44-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_total</span><span class="p">():</span>
+<a id="__codelineno-44-5" name="__codelineno-44-5"></a>    <span class="n">data</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">()</span>
+<a id="__codelineno-44-6" name="__codelineno-44-6"></a>    <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="s2">"count"</span><span class="p">]</span> <span class="o">+</span> <span class="mi">5</span>  <span class="c1"># TypeError</span>
+<a id="__codelineno-44-7" name="__codelineno-44-7"></a>
+<a id="__codelineno-44-8" name="__codelineno-44-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+<a id="__codelineno-44-9" name="__codelineno-44-9"></a>    <span class="k">return</span> <span class="n">compute_total</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div></li>
+<li><strong>Cell 2</strong>:
+  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-45-1">1</a></span>
+<span class="normal"><a href="#__codelineno-45-2">2</a></span>
+<span class="normal"><a href="#__codelineno-45-3">3</a></span>
+<span class="normal"><a href="#__codelineno-45-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1"></a><span class="o">%</span><span class="n">pdb</span> <span class="n">on</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2"></a><span class="n">main</span><span class="p">()</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3"></a>
+<a id="__codelineno-45-4" name="__codelineno-45-4"></a><span class="c1"># or using the %debug magic command</span>
+</code></pre></div></td></tr></table></div></li>
+<li><strong>Cell 3</strong>:
+  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-46-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1"></a><span class="o">%</span><span class="n">pdb</span> <span class="n">off</span>
+</code></pre></div></td></tr></table></div></li>
+</ul>
+<h4 id="execution_11">Execution<a class="headerlink" href="#execution_11" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Open <a href="https://github.com/ccoulombe/debugging-examples/blob/main/pdb-postmortem.ipynb"><code>pdb-postmortem.ipynb</code></a> in Jupyter.</li>
+<li>Run Cell 1.</li>
+<li>Run Cell 2: <code>%pdb on</code> activates the automatic debugger. As soon as <code>main()</code> raises the <code>TypeError</code> exception, the <code>ipdb&gt;</code> session opens:
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>Automatic pdb calling has been turned ON
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>TypeError: can only concatenate str (not "int") to str
+<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a>&gt; compute_total()
+<a id="__codelineno-47-4" name="__codelineno-47-4" href="#__codelineno-47-4"></a>----&gt; 6 return data["count"] + 5
+<a id="__codelineno-47-5" name="__codelineno-47-5" href="#__codelineno-47-5"></a>ipdb&gt; data["count"]
+<a id="__codelineno-47-6" name="__codelineno-47-6" href="#__codelineno-47-6"></a>'12'
+<a id="__codelineno-47-7" name="__codelineno-47-7" href="#__codelineno-47-7"></a>ipdb&gt; type(data['count'])
+<a id="__codelineno-47-8" name="__codelineno-47-8" href="#__codelineno-47-8"></a>&lt;class 'str'&gt;
+<a id="__codelineno-47-9" name="__codelineno-47-9" href="#__codelineno-47-9"></a>ipdb&gt; q
+</code></pre></div></li>
+<li>Run Cell 3 (<code>%pdb off</code>) to deactivate the automatic debugger trigger.</li>
+</ol>
+<hr />
+<h3 id="13-faulthandler-segfaultipynb-capturing-kernel-crashes-to-a-log-file">13. <code>faulthandler-segfault.ipynb</code> — Capturing Kernel Crashes to a Log File<a class="headerlink" href="#13-faulthandler-segfaultipynb-capturing-kernel-crashes-to-a-log-file" title="Permanent link">&para;</a></h3>
+<p>File: <a href="https://github.com/ccoulombe/debugging-examples/blob/main/faulthandler-segfault.ipynb"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span> faulthandler-segfault.ipynb</a></p>
+<h4 id="description_12">Description<a class="headerlink" href="#description_12" title="Permanent link">&para;</a></h4>
+<p>When a Jupyter notebook suffers a fatal C-level error (a segmentation fault for example), the kernel process dies suddenly, often causing the loss of standard error messages in the web interface.
+This example shows how to configure <code>faulthandler.enable(open("faults.log", "w"))</code> to redirect the crash trace to a persistent log file (<code>faults.log</code>).</p>
+<h4 id="content_2">Content:<a class="headerlink" href="#content_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Cell 1</strong>:
+  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-48-1">1</a></span>
+<span class="normal"><a href="#__codelineno-48-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">faulthandler</span>
+<a id="__codelineno-48-2" name="__codelineno-48-2"></a><span class="n">faulthandler</span><span class="o">.</span><span class="n">enable</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">"faults.log"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div></li>
+<li><strong>Cell 2</strong>:
+  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-49-1">1</a></span>
+<span class="normal"><a href="#__codelineno-49-2">2</a></span>
+<span class="normal"><a href="#__codelineno-49-3">3</a></span>
+<span class="normal"><a href="#__codelineno-49-4">4</a></span>
+<span class="normal"><a href="#__codelineno-49-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"About to crash..."</span><span class="p">)</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2"></a>
+<a id="__codelineno-49-3" name="__codelineno-49-3"></a><span class="c1"># Force a crash using ctypes</span>
+<a id="__codelineno-49-4" name="__codelineno-49-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">ctypes</span>
+<a id="__codelineno-49-5" name="__codelineno-49-5"></a><span class="n">ctypes</span><span class="o">.</span><span class="n">string_at</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>   <span class="c1"># invalid memory access → segfault</span>
+</code></pre></div></td></tr></table></div></li>
+</ul>
+<h4 id="execution_12">Execution<a class="headerlink" href="#execution_12" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Open <a href="https://github.com/ccoulombe/debugging-examples/blob/main/faulthandler-segfault.ipynb"><code>faulthandler-segfault.ipynb</code></a> in Jupyter.</li>
+<li>Run Cell 1 to redirect <code>faulthandler</code> output to <code>faults.log</code>.</li>
+<li>Run Cell 2: the Jupyter kernel crashes abruptly (<em>"Kernel died / restarting"</em>).</li>
+<li>Inspect the generated <code>faults.log</code> file with an editor or in a terminal:
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>cat<span class="w"> </span>faults.log
+</code></pre></div>
+   You will find that the complete call stack was successfully recorded to disk, precisely isolating the <code>ctypes/__init__.py</code> function and the offending cell!</li>
+</ol>
+<hr />
+<h2 id="practical-examples-additional">Practical Examples (Additional)<a class="headerlink" href="#practical-examples-additional" title="Permanent link">&para;</a></h2>
+<h3 id="14-hpc-interactive-pdbpy-interactive-pdb-on-compute-node">14. <code>hpc-interactive-pdb.py</code> — Interactive PDB on Compute Node<a class="headerlink" href="#14-hpc-interactive-pdbpy-interactive-pdb-on-compute-node" title="Permanent link">&para;</a></h3>
+<p>File: <a href="https://github.com/ccoulombe/debugging-examples/blob/main/hpc-interactive-pdb.py"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span> hpc-interactive-pdb.py</a></p>
+<h4 id="description_13">Description<a class="headerlink" href="#description_13" title="Permanent link">&para;</a></h4>
+<p>Inserting <code>breakpoint()</code> in a script submitted via <code>sbatch</code> causes an immediate crash (<code>BdbQuit</code> or <code>EOFError</code>) because the background task has no terminal (TTY) or standard input to interact with.
+To use PDB interactively, it is essential to request an interactive session (<code>salloc</code> or <code>srun --pty</code>) in order to debug the process.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-51-1">1</a></span>
+<span class="normal"><a href="#__codelineno-51-2">2</a></span>
+<span class="normal"><a href="#__codelineno-51-3">3</a></span>
+<span class="normal"><a href="#__codelineno-51-4">4</a></span>
+<span class="normal"><a href="#__codelineno-51-5">5</a></span>
+<span class="normal"><a href="#__codelineno-51-6">6</a></span>
+<span class="normal"><a href="#__codelineno-51-7">7</a></span>
+<span class="normal"><a href="#__codelineno-51-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">heavy_computation_with_bug</span><span class="p">(</span><span class="n">matrix_size</span><span class="p">):</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Allocating a </span><span class="si">{</span><span class="n">matrix_size</span><span class="si">}</span><span class="s2">x</span><span class="si">{</span><span class="n">matrix_size</span><span class="si">}</span><span class="s2"> matrix..."</span><span class="p">)</span>
+<a id="__codelineno-51-3" name="__codelineno-51-3"></a>    <span class="nb">breakpoint</span><span class="p">()</span>
+<a id="__codelineno-51-4" name="__codelineno-51-4"></a>    <span class="k">return</span> <span class="n">matrix_size</span> <span class="o">*</span> <span class="mi">2</span>
+<a id="__codelineno-51-5" name="__codelineno-51-5"></a>
+<a id="__codelineno-51-6" name="__codelineno-51-6"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+<a id="__codelineno-51-7" name="__codelineno-51-7"></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">heavy_computation_with_bug</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<a id="__codelineno-51-8" name="__codelineno-51-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Result: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="execution_13">Execution<a class="headerlink" href="#execution_13" title="Permanent link">&para;</a></h4>
+<p>In Slurm, first obtain an interactive shell:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>$ salloc -c 2 --mem=10G
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>salloc: Pending job allocation 3447848
+<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a>salloc: job 3447848 queued and waiting for resources
+<a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a>salloc: job 3447848 has been allocated resources
+<a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a>salloc: Granted job allocation 3447848
+<a id="__codelineno-52-6" name="__codelineno-52-6" href="#__codelineno-52-6"></a>salloc: Waiting for resource configuration
+<a id="__codelineno-52-7" name="__codelineno-52-7" href="#__codelineno-52-7"></a>salloc: Nodes nc20142 are ready for job
+</code></pre></div>
+Then launch the debugger:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>$ python hpc-interactive-pdb.py
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a>Allocating a 10000x10000 matrix...
+<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a>&gt; hpc-interactive-pdb.py(4)heavy_computation_with_bug()
+<a id="__codelineno-53-4" name="__codelineno-53-4" href="#__codelineno-53-4"></a>-&gt; return matrix_size * 2
+<a id="__codelineno-53-5" name="__codelineno-53-5" href="#__codelineno-53-5"></a>(Pdb) p matrix_size
+<a id="__codelineno-53-6" name="__codelineno-53-6" href="#__codelineno-53-6"></a>10000
+<a id="__codelineno-53-7" name="__codelineno-53-7" href="#__codelineno-53-7"></a>(Pdb) c
+<a id="__codelineno-53-8" name="__codelineno-53-8" href="#__codelineno-53-8"></a>Result: 20000
+</code></pre></div></p>
+<hr />
+<h3 id="15-hpc-io-watchdogpy-io-block">15. <code>hpc-io-watchdog.py</code> — I/O Block<a class="headerlink" href="#15-hpc-io-watchdogpy-io-block" title="Permanent link">&para;</a></h3>
+<p>File: <a href="https://github.com/ccoulombe/debugging-examples/blob/main/hpc-io-watchdog.py"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span> hpc-io-watchdog.py</a></p>
+<h4 id="description_14">Description<a class="headerlink" href="#description_14" title="Permanent link">&para;</a></h4>
+<p>HPC shared filesystems can experience severe latency spikes, blocking input/output operations (<code>np.load()</code>, <code>h5py</code> reads) in an uninterruptible sleep state. <code>faulthandler.dump_traceback_later()</code> allows you to display the call stack when the time has elapsed.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-54-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-54-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-54-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-54-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-54-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-54-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-54-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-54-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-54-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-54-10">10</a></span>
+<span class="normal"><a href="#__codelineno-54-11">11</a></span>
+<span class="normal"><a href="#__codelineno-54-12">12</a></span>
+<span class="normal"><a href="#__codelineno-54-13">13</a></span>
+<span class="normal"><a href="#__codelineno-54-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">faulthandler</span>
+<a id="__codelineno-54-2" name="__codelineno-54-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<a id="__codelineno-54-3" name="__codelineno-54-3"></a>
+<a id="__codelineno-54-4" name="__codelineno-54-4"></a><span class="c1"># Starting a watchdog timer (here 3 seconds for demonstration)</span>
+<a id="__codelineno-54-5" name="__codelineno-54-5"></a><span class="n">faulthandler</span><span class="o">.</span><span class="n">dump_traceback_later</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-54-6" name="__codelineno-54-6"></a>
+<a id="__codelineno-54-7" name="__codelineno-54-7"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-54-8" name="__codelineno-54-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Simulating reading file..."</span><span class="p">)</span>
+<a id="__codelineno-54-9" name="__codelineno-54-9"></a>    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Simulates a prolonged hang</span>
+<a id="__codelineno-54-10" name="__codelineno-54-10"></a><span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-54-11" name="__codelineno-54-11"></a>    <span class="c1"># Immediate cancellation upon success within the time limit</span>
+<a id="__codelineno-54-12" name="__codelineno-54-12"></a>    <span class="n">faulthandler</span><span class="o">.</span><span class="n">cancel_dump_traceback_later</span><span class="p">()</span>
+<a id="__codelineno-54-13" name="__codelineno-54-13"></a>
+<a id="__codelineno-54-14" name="__codelineno-54-14"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"I/O successfully completed."</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="execution_14">Execution<a class="headerlink" href="#execution_14" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>$ python hpc-io-watchdog.py
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a>Simulating reading file...
+<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a>Timeout (0:00:03)!
+<a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a>Thread 0x00007f9a39ea6f00 (most recent call first):
+<a id="__codelineno-55-5" name="__codelineno-55-5" href="#__codelineno-55-5"></a>  File "hpc-io-watchdog.py", line 9 in &lt;module&gt;
+<a id="__codelineno-55-6" name="__codelineno-55-6" href="#__codelineno-55-6"></a>I/O successfully completed.
+</code></pre></div>
+<hr />
+<h3 id="16-hpc-slurm-sigtermpy-infinite-loop">16. <code>hpc-slurm-sigterm.py</code> — Infinite loop<a class="headerlink" href="#16-hpc-slurm-sigtermpy-infinite-loop" title="Permanent link">&para;</a></h3>
+<p>File: <a href="https://github.com/ccoulombe/debugging-examples/blob/main/hpc-slurm-sigterm.py"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span> hpc-slurm-sigterm.py</a></p>
+<h4 id="description_15">Description<a class="headerlink" href="#description_15" title="Permanent link">&para;</a></h4>
+<p>In a High-Performance Computing (HPC) environment, a job that exceeds its time limit (<code>#SBATCH --time=...</code>), either because it runs infinitely or simply reaches the end of its allocated time, will be terminated. When the job is stopped by Slurm, a 60-second grace period is granted during which <code>SIGTERM</code> is sent before receiving a final <code>SIGKILL</code>. By intercepting <code>SIGTERM</code> with <code>faulthandler</code>, you can force the call stack to be printed in the output file (<code>slurm-%j.out</code>) to identify exactly where the infinite loop occurs or where your code execution was interrupted.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-56-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-56-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-56-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-56-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-56-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-56-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-56-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-56-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-56-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-56-10">10</a></span>
+<span class="normal"><a href="#__codelineno-56-11">11</a></span>
+<span class="normal"><a href="#__codelineno-56-12">12</a></span>
+<span class="normal"><a href="#__codelineno-56-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">faulthandler</span>
+<a id="__codelineno-56-2" name="__codelineno-56-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">signal</span>
+<a id="__codelineno-56-3" name="__codelineno-56-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<a id="__codelineno-56-4" name="__codelineno-56-4"></a>
+<a id="__codelineno-56-5" name="__codelineno-56-5"></a><span class="c1"># Prints the trace in the Slurm output upon receiving SIGTERM</span>
+<a id="__codelineno-56-6" name="__codelineno-56-6"></a><span class="n">faulthandler</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGTERM</span><span class="p">)</span>
+<a id="__codelineno-56-7" name="__codelineno-56-7"></a>
+<a id="__codelineno-56-8" name="__codelineno-56-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">heavy_computation</span><span class="p">():</span>
+<a id="__codelineno-56-9" name="__codelineno-56-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Starting..."</span><span class="p">)</span>
+<a id="__codelineno-56-10" name="__codelineno-56-10"></a>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<a id="__codelineno-56-11" name="__codelineno-56-11"></a>        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-56-12" name="__codelineno-56-12"></a>
+<a id="__codelineno-56-13" name="__codelineno-56-13"></a><span class="n">heavy_computation</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="execution-simulation">Execution (Simulation)<a class="headerlink" href="#execution-simulation" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>$ srun -c 2 --mem=10G python hpc-slurm-sigterm.py &amp;
+<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a>[1] 1663615
+<a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a>srun: job 3447846 queued and waiting for resources
+<a id="__codelineno-57-4" name="__codelineno-57-4" href="#__codelineno-57-4"></a>srun: job 3447846 has been allocated resources
+<a id="__codelineno-57-5" name="__codelineno-57-5" href="#__codelineno-57-5"></a>Starting...
+<a id="__codelineno-57-6" name="__codelineno-57-6" href="#__codelineno-57-6"></a>
+<a id="__codelineno-57-7" name="__codelineno-57-7" href="#__codelineno-57-7"></a>$ scancel 3447846
+<a id="__codelineno-57-8" name="__codelineno-57-8" href="#__codelineno-57-8"></a>srun: Job step aborted: Waiting up to 62 seconds for job step to finish.
+<a id="__codelineno-57-9" name="__codelineno-57-9" href="#__codelineno-57-9"></a>slurmstepd: error: *** STEP 3447846.0 ON nc20142 CANCELLED AT 2026-09-19T16:52:24 DUE to SIGNAL Terminated ***
+<a id="__codelineno-57-10" name="__codelineno-57-10" href="#__codelineno-57-10"></a>Current thread 0x0000150e66b84740 (most recent call first):
+<a id="__codelineno-57-11" name="__codelineno-57-11" href="#__codelineno-57-11"></a>  File "hpc-slurm-sigterm.py", line 11 in heavy_computation
+<a id="__codelineno-57-12" name="__codelineno-57-12" href="#__codelineno-57-12"></a>  File "hpc-slurm-sigterm.py", line 13 in &lt;module&gt;
+</code></pre></div>
+<hr />
+<h3 id="17-hpc-mpi-deadlockpy-mpi-deadlocks">17. <code>hpc-mpi-deadlock.py</code> — MPI Deadlocks<a class="headerlink" href="#17-hpc-mpi-deadlockpy-mpi-deadlocks" title="Permanent link">&para;</a></h3>
+<p>File: <a href="https://github.com/ccoulombe/debugging-examples/blob/main/hpc-mpi-deadlock.py"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span> hpc-mpi-deadlock.py</a></p>
+<h4 id="description_16">Description<a class="headerlink" href="#description_16" title="Permanent link">&para;</a></h4>
+<p>When using <code>mpi4py</code> distributed across multiple compute nodes, each MPI rank runs as a separate process and can hang waiting indefinitely for a message. By binding a custom signal (like <code>SIGUSR1</code>) to <code>faulthandler</code> in each process (<code>all_threads=True</code> also includes any threads within that rank's process), you can broadcast the signal to all ranks via <code>scancel</code> (or <code>kill</code>) to display the state of each rank.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-58-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-58-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-58-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-58-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-58-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-58-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-58-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-58-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-58-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-58-10">10</a></span>
+<span class="normal"><a href="#__codelineno-58-11">11</a></span>
+<span class="normal"><a href="#__codelineno-58-12">12</a></span>
+<span class="normal"><a href="#__codelineno-58-13">13</a></span>
+<span class="normal"><a href="#__codelineno-58-14">14</a></span>
+<span class="normal"><a href="#__codelineno-58-15">15</a></span>
+<span class="normal"><a href="#__codelineno-58-16">16</a></span>
+<span class="normal"><a href="#__codelineno-58-17">17</a></span>
+<span class="normal"><a href="#__codelineno-58-18">18</a></span>
+<span class="normal"><a href="#__codelineno-58-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">faulthandler</span>
+<a id="__codelineno-58-2" name="__codelineno-58-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">signal</span>
+<a id="__codelineno-58-3" name="__codelineno-58-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">mpi4py</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPI</span>
+<a id="__codelineno-58-4" name="__codelineno-58-4"></a>
+<a id="__codelineno-58-5" name="__codelineno-58-5"></a><span class="c1"># Registers SIGUSR1 in each MPI rank (process) to print its traceback</span>
+<a id="__codelineno-58-6" name="__codelineno-58-6"></a><span class="n">faulthandler</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGUSR1</span><span class="p">,</span> <span class="n">all_threads</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-58-7" name="__codelineno-58-7"></a>
+<a id="__codelineno-58-8" name="__codelineno-58-8"></a><span class="n">comm</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<a id="__codelineno-58-9" name="__codelineno-58-9"></a><span class="n">rank</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">Get_rank</span><span class="p">()</span>
+<a id="__codelineno-58-10" name="__codelineno-58-10"></a>
+<a id="__codelineno-58-11" name="__codelineno-58-11"></a><span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-58-12" name="__codelineno-58-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">"Rank 0 is waiting for rank 1..."</span><span class="p">)</span>
+<a id="__codelineno-58-13" name="__codelineno-58-13"></a>    <span class="c1"># Bug: Rank 0 waits for a message that will never be sent</span>
+<a id="__codelineno-58-14" name="__codelineno-58-14"></a>    <span class="n">data</span> <span class="o">=</span> <span class="n">comm</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>  <span class="c1"># Rank 0 process blocks here</span>
+<a id="__codelineno-58-15" name="__codelineno-58-15"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-58-16" name="__codelineno-58-16"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Rank </span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s2"> is busy..."</span><span class="p">)</span>
+<a id="__codelineno-58-17" name="__codelineno-58-17"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<a id="__codelineno-58-18" name="__codelineno-58-18"></a>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<a id="__codelineno-58-19" name="__codelineno-58-19"></a>        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Other rank process loops here</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="execution_15">Execution<a class="headerlink" href="#execution_15" title="Permanent link">&para;</a></h4>
+<p>Inside an allocation:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>$ module load StdEnv/2026 python/3.15 mpi4py/4.1
+<a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a>$ srun -n 2 python hpc-mpi-deadlock.py &amp;
+<a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a>[1] 1663616
+<a id="__codelineno-59-4" name="__codelineno-59-4" href="#__codelineno-59-4"></a>Rank 0 is waiting for rank 1...
+<a id="__codelineno-59-5" name="__codelineno-59-5" href="#__codelineno-59-5"></a>Rank 1 is busy...
+<a id="__codelineno-59-6" name="__codelineno-59-6" href="#__codelineno-59-6"></a>
+<a id="__codelineno-59-7" name="__codelineno-59-7" href="#__codelineno-59-7"></a>$ kill -USR1 $!
+<a id="__codelineno-59-8" name="__codelineno-59-8" href="#__codelineno-59-8"></a>Current thread 0x0000150e66b84741 (most recent call first):
+<a id="__codelineno-59-9" name="__codelineno-59-9" href="#__codelineno-59-9"></a>  File "hpc-mpi-deadlock.py", line 19 in &lt;module&gt;
+<a id="__codelineno-59-10" name="__codelineno-59-10" href="#__codelineno-59-10"></a>Current thread 0x0000150e66b84740 (most recent call first):
+<a id="__codelineno-59-11" name="__codelineno-59-11" href="#__codelineno-59-11"></a>  File "hpc-mpi-deadlock.py", line 14 in &lt;module&gt;
+</code></pre></div>
+or from a login node:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>$ module load StdEnv/2026 python/3.15 mpi4py/4.1
+<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a>$ srun -n 2 python hpc-mpi-deadlock.py &amp;
+<a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a>[1] 1663617
+<a id="__codelineno-60-4" name="__codelineno-60-4" href="#__codelineno-60-4"></a>srun: job 3447847 queued and waiting for resources
+<a id="__codelineno-60-5" name="__codelineno-60-5" href="#__codelineno-60-5"></a>srun: job 3447847 has been allocated resources
+<a id="__codelineno-60-6" name="__codelineno-60-6" href="#__codelineno-60-6"></a>Rank 0 is waiting for rank 1...
+<a id="__codelineno-60-7" name="__codelineno-60-7" href="#__codelineno-60-7"></a>Rank 1 is busy...
+<a id="__codelineno-60-8" name="__codelineno-60-8" href="#__codelineno-60-8"></a>
+<a id="__codelineno-60-9" name="__codelineno-60-9" href="#__codelineno-60-9"></a>$ scancel --signal=SIGUSR1 3447847
+<a id="__codelineno-60-10" name="__codelineno-60-10" href="#__codelineno-60-10"></a>Current thread 0x0000150e66b84741 (most recent call first):
+<a id="__codelineno-60-11" name="__codelineno-60-11" href="#__codelineno-60-11"></a>  File "hpc-mpi-deadlock.py", line 19 in &lt;module&gt;
+<a id="__codelineno-60-12" name="__codelineno-60-12" href="#__codelineno-60-12"></a>Current thread 0x0000150e66b84740 (most recent call first):
+<a id="__codelineno-60-13" name="__codelineno-60-13" href="#__codelineno-60-13"></a>  File "hpc-mpi-deadlock.py", line 14 in &lt;module&gt;
+</code></pre></div></p>
+<hr />
+<h2 id="cheat-sheet">Cheat Sheet<a class="headerlink" href="#cheat-sheet" title="Permanent link">&para;</a></h2>
+<h3 id="essential-pdb-commands">Essential PDB Commands<a class="headerlink" href="#essential-pdb-commands" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Command</th>
+<th style="text-align: left;">Shortcut</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>next</code></td>
+<td style="text-align: left;"><code>n</code></td>
+<td style="text-align: left;">Step over: execute current line without entering called functions.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>step</code></td>
+<td style="text-align: left;"><code>s</code></td>
+<td style="text-align: left;">Step into: enter called function at current line.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>continue</code></td>
+<td style="text-align: left;"><code>c</code></td>
+<td style="text-align: left;">Continue execution until the next breakpoint or completion.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>return</code></td>
+<td style="text-align: left;"><code>r</code></td>
+<td style="text-align: left;">Continue execution until the current function returns.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>longlist</code></td>
+<td style="text-align: left;"><code>ll</code></td>
+<td style="text-align: left;">Display complete source code of the active function.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>list</code></td>
+<td style="text-align: left;"><code>l</code></td>
+<td style="text-align: left;">Display 11 lines of code around current line.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>print</code></td>
+<td style="text-align: left;"><code>p &lt;expr&gt;</code></td>
+<td style="text-align: left;">Evaluate and display value of variable or expression.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>pp</code></td>
+<td style="text-align: left;"><code>pp &lt;expr&gt;</code></td>
+<td style="text-align: left;">Pretty-print structure of complex variable.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>display</code></td>
+<td style="text-align: left;"><code>display &lt;expr&gt;</code></td>
+<td style="text-align: left;">Automatically display value of <code>&lt;expr&gt;</code> each time it changes when execution stops.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>undisplay</code></td>
+<td style="text-align: left;"><code>undisplay &lt;expr&gt;</code></td>
+<td style="text-align: left;">Stop automatically displaying <code>&lt;expr&gt;</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>args</code></td>
+<td style="text-align: left;"><code>a</code></td>
+<td style="text-align: left;">Display list of arguments received by current function.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>break</code></td>
+<td style="text-align: left;"><code>b &lt;line&gt;</code></td>
+<td style="text-align: left;">Set breakpoint at specified line number.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>break</code> (cond)</td>
+<td style="text-align: left;"><code>b &lt;line&gt;, &lt;cond&gt;</code></td>
+<td style="text-align: left;">Set conditional breakpoint triggering only if <code>&lt;cond&gt;</code> is true.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>where</code></td>
+<td style="text-align: left;"><code>w</code></td>
+<td style="text-align: left;">Display call stack (<em>stack trace</em>), most recent frame at bottom.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>up</code> / <code>down</code></td>
+<td style="text-align: left;"><code>u</code> / <code>d</code></td>
+<td style="text-align: left;">Move up or down one level in stack frames.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>quit</code></td>
+<td style="text-align: left;"><code>q</code></td>
+<td style="text-align: left;">Quit debugger and terminate execution.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title"><code>PYTHONBREAKPOINT</code></p>
+<p>Set <code>PYTHONBREAKPOINT=0</code> in the environment to disable all <code>breakpoint()</code> calls without editing code, or <code>PYTHONBREAKPOINT=&lt;module&gt;.&lt;callable&gt;</code> (e.g., <code>ipdb.set_trace</code>) to use an alternative debugger.</p>
+</div>
+<h3 id="faulthandler-commands-and-options">Faulthandler Commands and Options<a class="headerlink" href="#faulthandler-commands-and-options" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Context</th>
+<th style="text-align: left;">Method / Option</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">In code</td>
+<td style="text-align: left;"><code>faulthandler.enable(file=sys.stderr)</code></td>
+<td style="text-align: left;">Enable handling of fatal signals (<code>SIGSEGV</code>, <code>SIGFPE</code>, <code>SIGABRT</code>, <code>SIGBUS</code>, <code>SIGILL</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;">In code</td>
+<td style="text-align: left;"><code>faulthandler.dump_traceback_later(timeout)</code></td>
+<td style="text-align: left;">Dump trace of all threads after a delay of <code>timeout</code> seconds.</td>
+</tr>
+<tr>
+<td style="text-align: left;">In code</td>
+<td style="text-align: left;"><code>faulthandler.register(signal)</code></td>
+<td style="text-align: left;">Dump trace upon receipt of specific OS signal (e.g. <code>SIGUSR1</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;">Command-line option</td>
+<td style="text-align: left;"><code>python -X faulthandler script.py</code></td>
+<td style="text-align: left;">Enable <code>faulthandler</code> module on interpreter startup without modifying script.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Environment variable</td>
+<td style="text-align: left;"><code>export PYTHONFAULTHANDLER=1</code></td>
+<td style="text-align: left;">Enable <code>faulthandler</code> globally for all Python processes in session.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ipython-jupyter-magic-commands">IPython / Jupyter Magic Commands<a class="headerlink" href="#ipython-jupyter-magic-commands" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Magic Command</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>%pdb on</code></td>
+<td style="text-align: left;">Automatically opens <code>ipdb</code> whenever an unhandled exception occurs.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>%pdb off</code></td>
+<td style="text-align: left;">Disables automatic post-mortem debugger launch.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>%debug</code></td>
+<td style="text-align: left;">Opens <code>ipdb</code> in post-mortem mode on the last unhandled exception.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["content.code.copy", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>
