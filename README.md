@@ -9,7 +9,8 @@ PDB + Faulthandler simple examples
 ## Prerequisites
 
 > [!NOTE]
-> Python **3.14 or higher** is required for some examples (e.g., low-level `faulthandler` diagnostics and signal handling).
+> - **Linux only**: This repository is designed for **Linux only** (several examples rely on POSIX signals and low-level Linux diagnostics such as `SIGUSR1`, `SIGTERM`, and `faulthandler.register`).
+> - Python **3.14 or higher** is required for some examples (e.g., low-level `faulthandler` diagnostics and signal handling).
 
 ## Installation
 
@@ -22,7 +23,7 @@ PDB + Faulthandler simple examples
 2. **Create and activate a virtual environment**:
    ```bash
    python -m venv .venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   source .venv/bin/activate
    ```
 
 3. **Install dependencies**:
