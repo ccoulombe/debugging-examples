@@ -1,4 +1,5 @@
 site_name: Python Debugging Examples
+site_url: https://ccoulombe.github.io/debugging-examples/
 docs_dir: docs
 
 theme:
