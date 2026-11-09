@@ -4,6 +4,8 @@ docs_dir: docs
 
 theme:
   name: material
+  icon:
+    logo: fontawesome/brands/python
   language: en
   palette:
     - media: "(prefers-color-scheme: light)"
