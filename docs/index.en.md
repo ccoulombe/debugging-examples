@@ -11,11 +11,17 @@ You will find a detailed overview of the debugging examples contained in this re
 
 ## Debugging Tools
 
-1. **`pdb` (Python Debugger)**:
+1. **[`print()`](https://docs.python.org/3/library/functions.html#print)**:
+   The fundamental built-in function for quick, lightweight inspection of variables and execution flow.
+2. **[`trace`](https://docs.python.org/3/library/trace.html) (`python -m trace`)**:
+   Standard library module to trace program execution line by line, generate execution count tables, and produce code coverage reports without modifying the code.
+3. **[`snoop`](https://github.com/alexmojaki/snoop) | [`icecream`](https://github.com/gruns/icecream)**:
+   Popular third-party debugging and inspection libraries: `icecream` provides a clean, readable alternative to `print()` with automatic expression and location printing (`ic(x)`), while `snoop` acts as a function decorator or context manager that logs line-by-line execution and variable changes.
+4. **[`pdb`](https://docs.python.org/3/library/pdb.html) (Python Debugger)**:
    The interactive source-code debugger included in Python's standard library. It supports setting breakpoints, stepping through code line-by-line (*step-by-step*), inspecting call stack frames (*stack frames*), and modifying variables dynamically at runtime.
-2. **`faulthandler`**:
+5. **[`faulthandler`](https://docs.python.org/3/library/faulthandler.html)**:
    Introduced in Python 3.3, this standard module catches low-level fault signals (such as `SIGSEGV`, `SIGFPE`, `SIGABRT`, `SIGBUS`, or `SIGILL`) as well as thread deadlocks. Because these brutal crashes terminate the Python runtime before `try...except` blocks can execute, `faulthandler` directly writes the Python call stack to standard error or to a file.
-3. **IPython / Jupyter Debugging**:
+6. **[IPython](https://ipython.readthedocs.io/) / Jupyter Debugging ([`ipdb`](https://github.com/gotcha/ipdb))**:
    Interactive environments integrate `ipdb` (an enhanced version of PDB offering syntax highlighting and autocompletion) via magic commands like `%pdb` or `%debug`, as well as the `set_trace()` function.
 
 ---

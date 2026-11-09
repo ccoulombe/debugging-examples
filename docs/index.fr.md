@@ -11,11 +11,17 @@ Vous trouverez une vue d'ensemble détaillée des exemples de débogage contenus
 
 ## Outils de débogage
 
-1. **`pdb` (Python Debugger)** :
+1. **[`print()`](https://docs.python.org/3/library/functions.html#print)** :
+   La fonction native fondamentale couramment utilisée pour inspecter rapidement la valeur des variables et le flux d'exécution.
+2. **[`trace`](https://docs.python.org/3/library/trace.html) (`python -m trace`)** :
+   Module de la bibliothèque standard permettant de tracer l'exécution d'un programme ligne par ligne, de compter le nombre d'exécutions de chaque instruction et de générer des rapports de couverture de code sans modifier le code source.
+3. **[`snoop`](https://github.com/alexmojaki/snoop) | [`icecream`](https://github.com/gruns/icecream)** :
+   Librairies tierces populaires d'inspection et de journalisation : `icecream` propose une alternative lisible et colorée à `print()` qui affiche automatiquement le nom de l'expression et sa valeur (`ic(x)`), tandis que `snoop` est un décorateur de fonction ou gestionnaire de contexte traçant l'exécution ligne par ligne avec les modifications de variables.
+4. **[`pdb`](https://docs.python.org/3/library/pdb.html) (Python Debugger)** :
    Le débogueur interactif de code source inclus dans la bibliothèque standard de Python. Il permet de poser des points d'arrêt, d'exécuter le code pas-à-pas (*step-by-step*), d'inspecter les cadres de la pile d'appels (*stack frames*) et de modifier des variables dynamiquement en cours d'exécution.
-2. **`faulthandler`** :
+5. **[`faulthandler`](https://docs.python.org/3/library/faulthandler.html)** :
    Introduit avec Python 3.3, ce module standard intercepte les signaux d'erreur bas niveau (tels que `SIGSEGV`, `SIGFPE`, `SIGABRT`, `SIGBUS` ou `SIGILL`) ainsi que les interblocages de threads. Comme ces plantages brutaux tuent le runtime Python avant même que les blocs `try...except` ne puissent agir, `faulthandler` écrit directement la pile d'appels Python sur la sortie d'erreur standard ou dans un fichier.
-3. **Débogage IPython / Jupyter** :
+6. **Débogage [IPython](https://ipython.readthedocs.io/) / Jupyter ([`ipdb`](https://github.com/gotcha/ipdb))** :
    Les environnements interactifs intègrent `ipdb` (une version enrichie de PDB offrant coloration syntaxique et autocomplétion) via des commandes magiques comme `%pdb` ou `%debug`, ainsi que la fonction `set_trace()`.
 
 ---
