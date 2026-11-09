@@ -1,8 +1,10 @@
 *.txt
+*.log
 !requirements.txt
 
 .venv/
 .ipynb_checkpoints/
+site/
 
 core*
 __pycache__/
