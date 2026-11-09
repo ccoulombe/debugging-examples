@@ -9,33 +9,6 @@ You will find a detailed overview of the debugging examples contained in this re
 
 ---
 
-## Table of Contents
-1. [Debugging Tools](#debugging-tools)
-2. [PDB Examples (Interactive Python Debugger)](#pdb-examples-interactive-python-debugger)
-   - [pdb-breakpoint.py — Breakpoints (breakpoint)](#1-pdb-breakpointpy--breakpoints-breakpoint)
-   - [pdb-set_trace.py — Classic Method pdb.set_trace()](#2-pdb-set_tracepy--classic-method-pdbset_trace)
-   - [pdb-average.py — Command-Line Debugging, Step-by-Step](#3-pdb-averagepy--command-line-debugging-step-by-step)
-   - [pdb-condition.py — Conditional Breakpoints](#4-pdb-conditionpy--conditional-breakpoints)
-   - [pdb-data.py — Command-Line Initialization (-c) and Type Mismatch](#5-pdb-datapy--command-line-initialization--c-and-type-mismatch)
-   - [pdb-postmortem.py — Command-Line Post-Mortem Debugging (-c continue)](#6-pdb-postmortempy--command-line-post-mortem-debugging--c-continue)
-3. [Faulthandler Examples (Low-Level Diagnostics)](#faulthandler-examples-low-level-diagnostics)
-   - [faulthandler-segfault.py — Segmentation Faults (SIGSEGV)](#7-faulthandler-segfaultpy--segmentation-faults-sigsegv)
-   - [faulthandler-sigill.py — Command-Line Activation (-X faulthandler)](#8-faulthandler-sigillpy--command-line-activation--x-faulthandler)
-   - [faulthandler-hang.py — Hang Detection and Timeout](#9-faulthandler-hangpy--hang-detection-and-timeout)
-   - [faulthandler-sigusr.py — On-Demand Signal Inspection and Process Attachment](#10-faulthandler-sigusrpy--on-demand-signal-inspection-and-process-attachment)
-4. [Jupyter Examples (Notebooks)](#jupyter-examples-notebooks)
-   - [pdb-breakpoint.ipynb — Interactive Debugging](#11-pdb-breakpointipynb--interactive-debugging)
-   - [pdb-postmortem.ipynb — Post-Mortem Debugging with %pdb](#12-pdb-postmortemipynb--post-mortem-debugging-with-pdb)
-   - [faulthandler-segfault.ipynb — Capturing Kernel Crashes to a Log File](#13-faulthandler-segfaultipynb--capturing-kernel-crashes-to-a-log-file)
-5. [Practical Examples (Additional)](#practical-examples-additional)
-   - [hpc-interactive-pdb.py — Interactive PDB on Compute Node](#14-hpc-interactive-pdbpy--interactive-pdb-on-compute-node)
-   - [hpc-io-watchdog.py — I/O Block](#15-hpc-io-watchdogpy--io-block)
-   - [hpc-slurm-sigterm.py — Infinite loop](#16-hpc-slurm-sigtermpy--infinite-loop)
-   - [hpc-mpi-deadlock.py — MPI Deadlocks](#17-hpc-mpi-deadlockpy--mpi-deadlocks)
-6. [Cheat Sheet](#cheat-sheet)
-
----
-
 ## Debugging Tools
 
 1. **`pdb` (Python Debugger)**:

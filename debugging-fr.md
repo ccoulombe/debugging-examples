@@ -9,33 +9,6 @@ Vous trouverez une vue d'ensemble détaillée des exemples de débogage contenus
 
 ---
 
-## Table des matières
-1. [Outils de débogage](#outils-de-débogage)
-2. [Exemples PDB (Débogueur interactif Python)](#exemples-pdb-débogueur-interactif-python)
-   - [pdb-breakpoint.py — Points d'arrêt (breakpoint)](#1-pdb-breakpointpy--points-darrêt-breakpoint)
-   - [pdb-set_trace.py — Méthode classique pdb.set_trace()](#2-pdb-set_tracepy--méthode-classique-pdbset_trace)
-   - [pdb-average.py — Débogage en ligne de commande, pas-à-pas](#3-pdb-averagepy--débogage-en-ligne-de-commande-pas-à-pas)
-   - [pdb-condition.py — Points d'arrêt conditionnels](#4-pdb-conditionpy--points-darrêt-conditionnels)
-   - [pdb-data.py — Initialisation via ligne de commande (-c) et discordance de types](#5-pdb-datapy--initialisation-via-ligne-de-commande--c-et-discordance-de-types)
-   - [pdb-postmortem.py — Débogage post-mortem en ligne de commande (-c continue)](#6-pdb-postmortempy--débogage-post-mortem-en-ligne-de-commande--c-continue)
-3. [Exemples Faulthandler (Diagnostics bas niveau)](#exemples-faulthandler-diagnostics-bas-niveau)
-   - [faulthandler-segfault.py — Erreurs de segmentation (SIGSEGV)](#7-faulthandler-segfaultpy--erreurs-de-segmentation-sigsegv)
-   - [faulthandler-sigill.py — Activation en ligne de commande (-X faulthandler)](#8-faulthandler-sigillpy--activation-en-ligne-de-commande--x-faulthandler)
-   - [faulthandler-hang.py — Détection de blocages et dépassement de délai (timeout)](#9-faulthandler-hangpy--détection-de-blocages-et-dépassement-de-délai-timeout)
-   - [faulthandler-sigusr.py — Inspection à la demande via signal et attachement de processus](#10-faulthandler-sigusrpy--inspection-à-la-demande-via-signal-et-attachement-de-processus)
-4. [Exemples Jupyter (Notebooks)](#exemples-jupyter-notebooks)
-   - [pdb-breakpoint.ipynb — Débogage interactif](#11-pdb-breakpointipynb--débogage-interactif)
-   - [pdb-postmortem.ipynb — Débogage post-mortem avec %pdb](#12-pdb-postmortemipynb--débogage-post-mortem-avec-pdb)
-   - [faulthandler-segfault.ipynb — Capture des plantages du noyau vers un fichier journal](#13-faulthandler-segfaultipynb--capture-des-plantages-du-noyau-vers-un-fichier-journal)
-5. [Exemples concrets (supplémentaires)](#exemples-concrets-supplémentaires)
-   - [hpc-interactive-pdb.py — PDB interactif sur nœud de calcul](#14-hpc-interactive-pdbpy--pdb-interactif-sur-nœud-de-calcul)
-   - [hpc-io-watchdog.py — Bloquage I/O](#15-hpc-io-watchdogpy--bloquage-io)
-   - [hpc-slurm-sigterm.py — Boucle infinie](#16-hpc-slurm-sigtermpy--boucle-infinie)
-   - [hpc-mpi-deadlock.py — Interblocages MPI](#17-hpc-mpi-deadlockpy--interblocages-mpi)
-6. [Aide-mémoire](#aide-mémoire)
-
----
-
 ## Outils de débogage
 
 1. **`pdb` (Python Debugger)** :
