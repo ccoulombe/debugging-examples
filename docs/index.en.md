@@ -882,6 +882,7 @@ else:
 #### Execution
 Inside an allocation:
 ```text
+$ module load StdEnv/2026 python/3.15 mpi4py/4.1
 $ srun -n 2 python hpc-mpi-deadlock.py &
 [1] 1663616
 Rank 0 is waiting for rank 1...
@@ -895,6 +896,7 @@ Current thread 0x0000150e66b84740 (most recent call first):
 ```
 or from a login node:
 ```text
+$ module load StdEnv/2026 python/3.15 mpi4py/4.1
 $ srun -n 2 python hpc-mpi-deadlock.py &
 [1] 1663617
 srun: job 3447847 queued and waiting for resources
