@@ -224,7 +224,8 @@ nums = []
 - `args`: Displays the arguments received by the current function (`nums = []`).
 - `nums = [1]`: Dynamically modifies a variable's state directly in the debugger, bypassing the zero division error and immediately testing subsequent behavior.
 
-> **Tip (`display`)**: When stepping through a loop (for example if `nums = [10, 20, 30]`), use `display total` instead of typing `p total` after every step. PDB will automatically print `total` whenever its value changes (`display total: 10  [old: 0]`). Use `undisplay` to stop watching it.
+!!! tip "`display`"
+    When stepping through a loop (for example if `nums = [10, 20, 30]`), use `display total` instead of typing `p total` after every step. PDB will automatically print `total` whenever its value changes (`display total: 10  [old: 0]`). Use `undisplay` to stop watching it.
 
 ---
 
@@ -518,7 +519,7 @@ Current thread's C stack trace (most recent call first):
 File : [:fontawesome-brands-github: faulthandler-hang.py](https://github.com/ccoulombe/debugging-examples/blob/main/faulthandler-hang.py)
 
 #### Description
-Allows identifying deadlocks (*deadlocks*) or infinite loops (*spinlocks*) using `faulthandler.dump_traceback_later(timeout)`. If execution time exceeds the specified timeout (here 3 seconds), `faulthandler` displays the traceback of all Python threads on standard error (`sys.stderr`) without interrupting the process.
+Allows identifying deadlocks or infinite loops (*spinlocks*) using `faulthandler.dump_traceback_later(timeout)`. If execution time exceeds the specified timeout (here 3 seconds), `faulthandler` displays the traceback of all Python threads on standard error (`sys.stderr`) without interrupting the process.
 
 ```python
 import time
@@ -762,7 +763,7 @@ Then launch the debugger:
 ```text
 $ python hpc-interactive-pdb.py
 Allocating a 10000x10000 matrix...
-> /workspace/hpc-interactive-pdb.py(4)heavy_computation_with_bug()
+> hpc-interactive-pdb.py(4)heavy_computation_with_bug()
 -> return matrix_size * 2
 (Pdb) p matrix_size
 10000
@@ -933,7 +934,8 @@ Current thread 0x0000150e66b84740 (most recent call first):
 | `up` / `down` | `u` / `d` | Move up or down one level in stack frames. |
 | `quit` | `q` | Quit debugger and terminate execution. |
 
-> **Note (`PYTHONBREAKPOINT`)**: Set `PYTHONBREAKPOINT=0` in the environment to disable all `breakpoint()` calls without editing code, or `PYTHONBREAKPOINT=<module>.<callable>` (e.g., `ipdb.set_trace`) to use an alternative debugger.
+!!! note "`PYTHONBREAKPOINT`"
+    Set `PYTHONBREAKPOINT=0` in the environment to disable all `breakpoint()` calls without editing code, or `PYTHONBREAKPOINT=<module>.<callable>` (e.g., `ipdb.set_trace`) to use an alternative debugger.
 
 ### Faulthandler Commands and Options
 

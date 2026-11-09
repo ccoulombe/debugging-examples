@@ -224,7 +224,8 @@ nums = []
 - `args` : Affiche les arguments reçus par la fonction courante (`nums = []`).
 - `nums = [1]` : Modification dynamique de l'état d'une variable directement dans le débogueur, évitant l'erreur de division par zéro et permettant de tester immédiatement le comportement du reste du code.
 
-> **Astuce (`display`)** : Lorsque vous avancez pas-à-pas dans une boucle (par exemple avec `nums = [10, 20, 30]`), utilisez `display total` au lieu de taper `p total` à chaque fois. PDB affichera automatiquement `total` dès que sa valeur change (`display total: 10  [old: 0]`). Utilisez `undisplay` pour arrêter le suivi.
+!!! tip "`display`"
+    Lorsque vous avancez pas-à-pas dans une boucle (par exemple avec `nums = [10, 20, 30]`), utilisez `display total` au lieu de taper `p total` à chaque fois. PDB affichera automatiquement `total` dès que sa valeur change (`display total: 10  [old: 0]`). Utilisez `undisplay` pour arrêter le suivi.
 
 ---
 
@@ -762,7 +763,7 @@ Puis on lance le débogueur :
 ```text
 $ python hpc-interactive-pdb.py
 Allocating a 10000x10000 matrix...
-> /workspace/hpc-interactive-pdb.py(4)heavy_computation_with_bug()
+> hpc-interactive-pdb.py(4)heavy_computation_with_bug()
 -> return matrix_size * 2
 (Pdb) p matrix_size
 10000
@@ -772,12 +773,12 @@ Result: 20000
 
 ---
 
-### 15. `hpc-io-watchdog.py` — Bloquage I/O
+### 15. `hpc-io-watchdog.py` — Blocage I/O
 
 Fichier : [:fontawesome-brands-github: hpc-io-watchdog.py](https://github.com/ccoulombe/debugging-examples/blob/main/hpc-io-watchdog.py)
 
 #### Description
-Les systèmes de fichiers partagés HPC peuvent subir d'intenses pics, bloquant les opérations d'entrée/sortie (`np.load()`, lectures `h5py`) dans un état de sommeil ininterruptible. `faulthandler.dump_traceback_later()` permet de d'afficher la pile lorsque le temps est écoulé.
+Les systèmes de fichiers partagés HPC peuvent subir d'intenses pics, bloquant les opérations d'entrée/sortie (`np.load()`, lectures `h5py`) dans un état de sommeil ininterruptible. `faulthandler.dump_traceback_later()` permet d'afficher la pile lorsque le temps est écoulé.
 
 ```python
 import faulthandler
@@ -892,7 +893,7 @@ Current thread 0x0000150e66b84741 (most recent call first):
 Current thread 0x0000150e66b84740 (most recent call first):
   File "hpc-mpi-deadlock.py", line 14 in <module>
 ```
-ou depuis un noeud de connexion
+ou depuis un nœud de connexion :
 ```text
 $ srun -n 2 python hpc-mpi-deadlock.py &
 [1] 1663617
@@ -933,7 +934,8 @@ Current thread 0x0000150e66b84740 (most recent call first):
 | `up` / `down` | `u` / `d` | Monte ou descend d'un niveau dans la pile des cadres d'exécution. |
 | `quit` | `q` | Quitte le débogueur et met fin à l'exécution. |
 
-> **Note (`PYTHONBREAKPOINT`)** : Définir `PYTHONBREAKPOINT=0` dans l'environnement pour désactiver tous les appels à `breakpoint()` sans modifier le code, ou `PYTHONBREAKPOINT=<module>.<fonction>` (ex. `ipdb.set_trace`) pour utiliser un débogueur alternatif.
+!!! note "`PYTHONBREAKPOINT`"
+    Définir `PYTHONBREAKPOINT=0` dans l'environnement pour désactiver tous les appels à `breakpoint()` sans modifier le code, ou `PYTHONBREAKPOINT=<module>.<fonction>` (ex. `ipdb.set_trace`) pour utiliser un débogueur alternatif.
 
 ### Commandes et options Faulthandler
 
@@ -943,7 +945,7 @@ Current thread 0x0000150e66b84740 (most recent call first):
 | Dans le code | `faulthandler.dump_traceback_later(timeout)` | Écrit la trace de tous les threads après un délai d'attente de `timeout` secondes. |
 | Dans le code | `faulthandler.register(signal)` | Écrit la trace dès la réception d'un signal système spécifique (ex. `SIGUSR1`). |
 | Option à la ligne de commandes | `python -X faulthandler script.py` | Active le module `faulthandler` au démarrage de l'interpréteur sans modifier le script. |
-| Variable d'environnement. | `export PYTHONFAULTHANDLER=1` | Active `faulthandler` de manière globale pour tous les processus Python de la session. |
+| Variable d'environnement | `export PYTHONFAULTHANDLER=1` | Active `faulthandler` de manière globale pour tous les processus Python de la session. |
 
 ### Commandes magiques IPython / Jupyter
 
