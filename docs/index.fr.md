@@ -36,7 +36,7 @@ Fichier : [:fontawesome-brands-github: pdb-breakpoint.py](https://github.com/cco
 Introduite avec Python 3.7 ([PEP 553](https://peps.python.org/pep-0553/)), la fonction native `breakpoint()` suspend l'exécution du programme et bascule directement vers le débogueur configuré (par défaut `pdb`).
 Dans cet exemple, l'appel à `double(val)` rencontre immédiatement `breakpoint()`, interrompt le flux d'instructions et ouvre l'invite de commande `(Pdb)`.
 
-```python
+```python linenums="1"
 def double(x):
    breakpoint()
    return x * 2
@@ -94,7 +94,7 @@ Fichier : [:fontawesome-brands-github: pdb-set_trace.py](https://github.com/ccou
 #### Description
 Illustre l'approche traditionnelle employée dans les versions de Python antérieures à 3.7 : l'import explicite du module `pdb` et l'appel à `pdb.set_trace()`. L'exemple met également en évidence la capacité du débogueur à évaluer directement des expressions Python à la volée.
 
-```python
+```python linenums="1"
 import pdb
 
 def double(x):
@@ -143,7 +143,7 @@ Fichier : [:fontawesome-brands-github: pdb-average.py](https://github.com/ccoulo
 Lance un script sous PDB sans modifier son code source grâce à l'option `-m pdb`.
 La fonction calcule la moyenne d'une liste de nombres. Lorsqu'elle est invoquée avec une liste vide `[]`, une exception `ZeroDivisionError` est levée lors du calcul `total / len(nums)`.
 
-```python
+```python linenums="1"
 def average(nums):
     total = 0
     for n in nums:
@@ -243,7 +243,7 @@ Fichier : [:fontawesome-brands-github: pdb-condition.py](https://github.com/ccou
 Présente la mise en place d'un point d'arrêt conditionnel qui n'interrompt le programme que lorsqu'une condition spécifique est satisfaite.
 Dans cette boucle, la fonction parcourt des entiers et doit lever une `ValueError` dès qu'un nombre est négatif :
 
-```python
+```python linenums="1"
 def process(items):
     for i, x in enumerate(items):
         if x < 0:
@@ -302,7 +302,7 @@ Illustre deux concepts clés :
 1. Automatiser l'injection d'instructions de débogage dès le démarrage à l'aide du paramètre `-c`.
 2. Diagnostiquer et corriger en mémoire une exception `TypeError` provoquée par une tentative d'addition entre une chaîne de caractères et un entier (`"12" + 5`).
 
-```python
+```python linenums="1"
 def load_data():
     return {"count": "12"}  # Bogue : count devrait être un entier
 
@@ -371,7 +371,7 @@ Fichier : [:fontawesome-brands-github: pdb-postmortem.py](https://github.com/cco
 #### Description
 Exécute un script à vitesse normale sous PDB grâce à `-c continue` (ou `-c c`) sans définir de point d'arrêt à l'avance. Lorsqu'une exception non interceptée survient dans une sous-fonction (`ZeroDivisionError` dans `invert(x)`), PDB bascule automatiquement en **mode post-mortem** à l'endroit exact de l'erreur, ce qui permet d'examiner la pile d'appels (`w`) et de remonter (`up`) à l'origine de l'appel (`process(nums)`) pour identifier l'itération fautive.
 
-```python
+```python linenums="1"
 def invert(x):
     return 1 / x
 
@@ -441,7 +441,7 @@ Fichier : [:fontawesome-brands-github: faulthandler-segfault.py](https://github.
 L'appel à `ctypes.string_at(0)` force un déréférencement de pointeur nul (`0x0`), ce qui déclenche immédiatement une violation d'accès mémoire (`SIGSEGV`).
 Sans `faulthandler`, le système d'exploitation afficherait uniquement `Erreur de segmentation (core dumped)`. Grâce à `faulthandler.enable()`, la ligne de code Python responsable ainsi que la pile d'appels C sont intégralement affichées avant que le processus ne prenne fin.
 
-```python
+```python linenums="1"
 import faulthandler
 faulthandler.enable()
 
@@ -480,7 +480,7 @@ Fichier : [:fontawesome-brands-github: faulthandler-sigill.py](https://github.co
 #### Description
 Montre comment activer `faulthandler` au niveau de l'interpréteur Python sans modifier une seule ligne de code source, soit avec l'option CLI `-X faulthandler`, soit avec la variable d'environnement `PYTHONFAULTHANDLER=1`. Le script émet délibérément le signal d'instruction machine illégale (`SIGILL`).
 
-```python
+```python linenums="1"
 import signal
 
 signal.raise_signal(signal.SIGILL)
@@ -527,7 +527,7 @@ Fichier : [:fontawesome-brands-github: faulthandler-hang.py](https://github.com/
 #### Description
 Permet d'identifier les interblocages (*deadlocks*) ou les boucles infinies (*spinlocks*) à l'aide de `faulthandler.dump_traceback_later(timeout)`. Si le temps d'exécution dépasse le délai imparti (ici 3 secondes), `faulthandler` affiche la trace de tous les threads Python sur la sortie d'erreur (`sys.stderr`) sans interrompre le processus.
 
-```python
+```python linenums="1"
 import time
 import faulthandler
 
@@ -560,7 +560,7 @@ Présente deux techniques avancées pour examiner un processus Python en cours o
 1. Enregistrer un gestionnaire de signal avec `faulthandler.register(signal.SIGUSR1)`. Lors de la réception du signal `SIGUSR1`, le processus affiche immédiatement sa pile d'exécution sans s'arrêter.
 2. Attacher un débogueur interactif PDB à un processus en cours d'exécution via la commande `python -m pdb -p <PID>`.
 
-```python
+```python linenums="1"
 import faulthandler
 import signal
 import time
@@ -619,7 +619,7 @@ Utilisation d'un point d'arrêt directement au cœur d'une cellule de *notebook*
 #### Contenu :
 
 - **Cellule 1** :
-  ```python
+  ```python linenums="1"
   from IPython.core.debugger import set_trace
 
   def average(nums):
@@ -630,7 +630,7 @@ Utilisation d'un point d'arrêt directement au cœur d'une cellule de *notebook*
       return total / len(nums)
   ```
 - **Cellule 2** :
-  ```python
+  ```python linenums="1"
   print(average([]))
   ```
 
@@ -655,7 +655,7 @@ Utilisation du mode post-mortem automatique d'IPython via `%pdb on` (ou `%debug`
 #### Contenu :
 
 - **Cellule 1** :
-  ```python
+  ```python linenums="1"
   def load_data():
       return {"count": "12"}  # Bogue : count devrait être un entier
 
@@ -667,14 +667,14 @@ Utilisation du mode post-mortem automatique d'IPython via `%pdb on` (ou `%debug`
       return compute_total()
   ```
 - **Cellule 2** :
-  ```python
+  ```python linenums="1"
   %pdb on
   main()
 
   # ou bien avec la commande magique %debug
   ```
 - **Cellule 3** :
-  ```python
+  ```python linenums="1"
   %pdb off
   ```
 
@@ -708,12 +708,12 @@ Cet exemple montre comment configurer `faulthandler.enable(open("faults.log", "w
 #### Contenu :
 
 - **Cellule 1** :
-  ```python
+  ```python linenums="1"
   import faulthandler
   faulthandler.enable(open("faults.log", "w"))
   ```
 - **Cellule 2** :
-  ```python
+  ```python linenums="1"
   print("About to crash...")
 
   # Forcer un plantage mémoire via ctypes
@@ -743,7 +743,7 @@ Fichier : [:fontawesome-brands-github: hpc-interactive-pdb.py](https://github.co
 Insérer `breakpoint()` dans un script soumis via `sbatch` provoque un crash immédiat (`BdbQuit` ou `EOFError`) car la tâche en arrière-plan ne dispose d'aucun terminal (TTY) ou entrée standard pour interagir.
 Pour utiliser PDB interactivement, il est indispensable de demander une session interactive (`salloc` ou `srun --pty`) afin de déboguer le tout.
 
-```python
+```python linenums="1"
 def heavy_computation_with_bug(matrix_size):
     print(f"Allocating a {matrix_size}x{matrix_size} matrix...")
     breakpoint()
@@ -786,7 +786,7 @@ Fichier : [:fontawesome-brands-github: hpc-io-watchdog.py](https://github.com/cc
 #### Description
 Les systèmes de fichiers partagés HPC peuvent subir d'intenses pics, bloquant les opérations d'entrée/sortie (`np.load()`, lectures `h5py`) dans un état de sommeil ininterruptible. `faulthandler.dump_traceback_later()` permet d'afficher la pile lorsque le temps est écoulé.
 
-```python
+```python linenums="1"
 import faulthandler
 import time
 
@@ -822,7 +822,7 @@ Fichier : [:fontawesome-brands-github: hpc-slurm-sigterm.py](https://github.com/
 #### Description
 Dans un environnement de calcul haute performance (HPC), une tâche qui dépasse son temps limite (`#SBATCH --time=...`), parce qu'elle tourne indéfiniment ou qu'elle atteint simplement le temps alloué, sera arrêtée. Lorsque la tâche est interrompue par Slurm, un délai de 60 secondes est accordé avec l'envoi d'un signal `SIGTERM` avant que celle-ci ne reçoive un `SIGKILL` définitif. En interceptant `SIGTERM` avec `faulthandler`, vous pouvez forcer l'affichage de la pile d'appels dans le fichier de sortie (`slurm-%j.out`) pour savoir exactement où la boucle infinie se produit ou où en était l'exécution de votre code.
 
-```python
+```python linenums="1"
 import faulthandler
 import signal
 import time
@@ -863,7 +863,7 @@ Fichier : [:fontawesome-brands-github: hpc-mpi-deadlock.py](https://github.com/c
 #### Description
 Lors de l'utilisation de `mpi4py` réparti sur plusieurs nœuds de calcul, chaque rang MPI s'exécute dans un processus distinct et peut se bloquer en attendant indéfiniment un message. En associant un signal personnalisé (comme `SIGUSR1`) à `faulthandler` dans chaque processus (`all_threads=True` incluant aussi les éventuels threads internes à ce processus), il est possible d'envoyer un signal à l'ensemble des processus via `scancel` (ou `kill`) pour afficher l'état de chaque rang.
 
-```python
+```python linenums="1"
 import faulthandler
 import signal
 from mpi4py import MPI

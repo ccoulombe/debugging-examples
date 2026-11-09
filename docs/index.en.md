@@ -36,7 +36,7 @@ File: [:fontawesome-brands-github: pdb-breakpoint.py](https://github.com/ccoulom
 Introduced in Python 3.7 ([PEP 553](https://peps.python.org/pep-0553/)), the built-in `breakpoint()` function suspends program execution and drops directly into the configured debugger (by default `pdb`).
 In this example, calling `double(val)` immediately hits `breakpoint()`, interrupts instruction flow, and opens the `(Pdb)` prompt.
 
-```python
+```python linenums="1"
 def double(x):
    breakpoint()
    return x * 2
@@ -94,7 +94,7 @@ File: [:fontawesome-brands-github: pdb-set_trace.py](https://github.com/ccoulomb
 #### Description
 Illustrates the traditional approach used in Python versions prior to 3.7: explicitly importing the `pdb` module and calling `pdb.set_trace()`. The example also highlights the debugger's ability to directly evaluate Python expressions on the fly.
 
-```python
+```python linenums="1"
 import pdb
 
 def double(x):
@@ -143,7 +143,7 @@ File: [:fontawesome-brands-github: pdb-average.py](https://github.com/ccoulombe/
 Runs a script under PDB without modifying its source code using the `-m pdb` option.
 The function calculates the average of a list of numbers. When invoked with an empty list `[]`, a `ZeroDivisionError` exception is raised during the `total / len(nums)` calculation.
 
-```python
+```python linenums="1"
 def average(nums):
     total = 0
     for n in nums:
@@ -243,7 +243,7 @@ File: [:fontawesome-brands-github: pdb-condition.py](https://github.com/ccoulomb
 Setup of a conditional breakpoint that only interrupts the program when a specific condition is met.
 In this loop, the function iterates over integers and must raise a `ValueError` as soon as a number is negative:
 
-```python
+```python linenums="1"
 def process(items):
     for i, x in enumerate(items):
         if x < 0:
@@ -302,7 +302,7 @@ Illustrates two key concepts:
 1. Automating the injection of debugging commands right at startup using the `-c` parameter.
 2. Diagnosing and correcting in memory a `TypeError` exception caused by an attempt to add a string and an integer (`"12" + 5`).
 
-```python
+```python linenums="1"
 def load_data():
     return {"count": "12"}  # BUG: count should be int
 
@@ -371,7 +371,7 @@ File: [:fontawesome-brands-github: pdb-postmortem.py](https://github.com/ccoulom
 #### Description
 Runs a script at normal speed under PDB using `-c continue` (or `-c c`) without setting any breakpoints in advance. When an unhandled exception occurs inside a helper function (`ZeroDivisionError` in `invert(x)`), PDB automatically enters **post-mortem mode** at the exact point of failure, allowing you to inspect the call stack (`w`) and move up (`up`) to the caller frame (`process(nums)`) to see which loop iteration caused the crash.
 
-```python
+```python linenums="1"
 def invert(x):
     return 1 / x
 
@@ -441,7 +441,7 @@ File: [:fontawesome-brands-github: faulthandler-segfault.py](https://github.com/
 Calling `ctypes.string_at(0)` forces a NULL pointer dereference (`0x0`), which immediately triggers a memory access violation (`SIGSEGV`).
 Without `faulthandler`, the operating system would only display `Segmentation fault (core dumped)`. Thanks to `faulthandler.enable()`, the responsible Python code line as well as the C call stack are fully displayed before the process terminates.
 
-```python
+```python linenums="1"
 import faulthandler
 faulthandler.enable()
 
@@ -480,7 +480,7 @@ File: [:fontawesome-brands-github: faulthandler-sigill.py](https://github.com/cc
 #### Description
 Shows how to enable `faulthandler` at the Python interpreter level without modifying a single line of source code, either with the CLI option `-X faulthandler`, or with the environment variable `PYTHONFAULTHANDLER=1`. The script deliberately emits the illegal hardware instruction signal (`SIGILL`).
 
-```python
+```python linenums="1"
 import signal
 
 signal.raise_signal(signal.SIGILL)
@@ -527,7 +527,7 @@ File: [:fontawesome-brands-github: faulthandler-hang.py](https://github.com/ccou
 #### Description
 Allows identifying deadlocks or infinite loops (*spinlocks*) using `faulthandler.dump_traceback_later(timeout)`. If execution time exceeds the specified timeout (here 3 seconds), `faulthandler` displays the traceback of all Python threads on standard error (`sys.stderr`) without interrupting the process.
 
-```python
+```python linenums="1"
 import time
 import faulthandler
 
@@ -560,7 +560,7 @@ Presents two advanced techniques for examining a running or stuck Python process
 1. Registering a signal handler with `faulthandler.register(signal.SIGUSR1)`. Upon receiving the `SIGUSR1` signal, the process immediately displays its execution stack without stopping.
 2. Attaching an interactive PDB debugger to a running process via the command `python -m pdb -p <PID>`.
 
-```python
+```python linenums="1"
 import faulthandler
 import signal
 import time
@@ -619,7 +619,7 @@ Using a breakpoint directly inside a Jupyter notebook cell using `IPython.core.d
 #### Content:
 
 - **Cell 1**:
-  ```python
+  ```python linenums="1"
   from IPython.core.debugger import set_trace
 
   def average(nums):
@@ -630,7 +630,7 @@ Using a breakpoint directly inside a Jupyter notebook cell using `IPython.core.d
       return total / len(nums)
   ```
 - **Cell 2**:
-  ```python
+  ```python linenums="1"
   print(average([]))
   ```
 
@@ -655,7 +655,7 @@ Using IPython's automatic post-mortem mode via `%pdb on` (or `%debug`). When an 
 #### Content:
 
 - **Cell 1**:
-  ```python
+  ```python linenums="1"
   def load_data():
       return {"count": "12"}  # BUG: count should be int
 
@@ -667,14 +667,14 @@ Using IPython's automatic post-mortem mode via `%pdb on` (or `%debug`). When an 
       return compute_total()
   ```
 - **Cell 2**:
-  ```python
+  ```python linenums="1"
   %pdb on
   main()
 
   # or using the %debug magic command
   ```
 - **Cell 3**:
-  ```python
+  ```python linenums="1"
   %pdb off
   ```
 
@@ -708,12 +708,12 @@ This example shows how to configure `faulthandler.enable(open("faults.log", "w")
 #### Content:
 
 - **Cell 1**:
-  ```python
+  ```python linenums="1"
   import faulthandler
   faulthandler.enable(open("faults.log", "w"))
   ```
 - **Cell 2**:
-  ```python
+  ```python linenums="1"
   print("About to crash...")
 
   # Force a crash using ctypes
@@ -743,7 +743,7 @@ File: [:fontawesome-brands-github: hpc-interactive-pdb.py](https://github.com/cc
 Inserting `breakpoint()` in a script submitted via `sbatch` causes an immediate crash (`BdbQuit` or `EOFError`) because the background task has no terminal (TTY) or standard input to interact with.
 To use PDB interactively, it is essential to request an interactive session (`salloc` or `srun --pty`) in order to debug the process.
 
-```python
+```python linenums="1"
 def heavy_computation_with_bug(matrix_size):
     print(f"Allocating a {matrix_size}x{matrix_size} matrix...")
     breakpoint()
@@ -786,7 +786,7 @@ File: [:fontawesome-brands-github: hpc-io-watchdog.py](https://github.com/ccoulo
 #### Description
 HPC shared filesystems can experience severe latency spikes, blocking input/output operations (`np.load()`, `h5py` reads) in an uninterruptible sleep state. `faulthandler.dump_traceback_later()` allows you to display the call stack when the time has elapsed.
 
-```python
+```python linenums="1"
 import faulthandler
 import time
 
@@ -822,7 +822,7 @@ File: [:fontawesome-brands-github: hpc-slurm-sigterm.py](https://github.com/ccou
 #### Description
 In a High-Performance Computing (HPC) environment, a job that exceeds its time limit (`#SBATCH --time=...`), either because it runs infinitely or simply reaches the end of its allocated time, will be terminated. When the job is stopped by Slurm, a 60-second grace period is granted during which `SIGTERM` is sent before receiving a final `SIGKILL`. By intercepting `SIGTERM` with `faulthandler`, you can force the call stack to be printed in the output file (`slurm-%j.out`) to identify exactly where the infinite loop occurs or where your code execution was interrupted.
 
-```python
+```python linenums="1"
 import faulthandler
 import signal
 import time
@@ -863,7 +863,7 @@ File: [:fontawesome-brands-github: hpc-mpi-deadlock.py](https://github.com/ccoul
 #### Description
 When using `mpi4py` distributed across multiple compute nodes, each MPI rank runs as a separate process and can hang waiting indefinitely for a message. By binding a custom signal (like `SIGUSR1`) to `faulthandler` in each process (`all_threads=True` also includes any threads within that rank's process), you can broadcast the signal to all ranks via `scancel` (or `kill`) to display the state of each rank.
 
-```python
+```python linenums="1"
 import faulthandler
 import signal
 from mpi4py import MPI
